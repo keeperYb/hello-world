@@ -1,0 +1,31 @@
+-? appinfo.py 为什么QFile.copy不能用alias...
+------------------------------------------------------------------------------------------
+-------------------------
+结构问题?
+- 心跳获取数据库信息, 刷新页面
+	- 先做 任务 界面
+
+-------------------------
+
+
+
+-------------------------
+
+
+与其他应用系统
+信息交互情况
+-------------------------
+PageEvaluationOpinion.py 
+word报告填充	mailmerge
+----
+专家评估日期  _reportTaskDesc.AssessmentMeetingDate, 需要更改日期格式
+测评机构 _reportTaskDesc.DeInstitution
+召开地点 _reportTaskDesc.AssessmentMeetingAddress
+系统名称 _reportSignOff.SysName
+受检测单位(委托方名称)  _reportClient.ClientName
+----
+界面填充?
+-------------------------
+git rm --cached <fileName> 	删除已经add, commit的文件管控, 不删除工作目录中的文件
+-------------------------
+MyQuest: Python Tutorial : Start

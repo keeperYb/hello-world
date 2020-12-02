@@ -1,0 +1,37 @@
+TopoLinux
+pad :规范化管理系统, logName: datauser	,	password: qwer1234
+
+-------------------------
+软件, 密品
+-------------------------
+密级修复...
+	- SecretCarrier...
+-------------------------
+MobileLogicController.py
+- checkDBValidity, 检查是否符合进入DB的标准
+- 补全数据
+	-RowStatus
+	-CreateTime
+	-...
+-------------------------
+FileDownloadUI
+- 下半部分的数据库查询
+	- 设备名称lienEdit
+		-设备名称为空时, 查询SysFilePush的所有项, 取出其中的CreateDevice, 去SysAndroidDevice查找DeviceName, 填入左侧table第一列, 其余列按规则填
+		-设备名称不为空时, 去SysAndroidDevice模糊查询lineEdit的text, 得到Sn; 根据Sn再去SysFilePush找对应的记录,  用记录填写左侧table
+		-左侧table每一行都对应SysAndroidDevice的一条记录
+	- 点击左侧table
+		-查找这一行对应的记录, 然后以Sn查询SysFilePushDetail, 显示在右侧table
+	
+adb.exe -s KBSOQK7SFY7TPVKN push "C:/Users/xuyb/Desktop/excel/表3-物理安全措施表.xls" "/sdcard/xyb"
+-------------------------
+ others:
+ ? 检查是否符合进入DB的标准, 这个方法还需要优化,
+ ? 利用DAO来查询多个filter, 最好operator也能传过去...
+ ?? git log 不上传merge的commit
+ ? python生成器
+ 
+pull 平板上的.db文件 
+adb path:	d: 
+			cd D:\PythonWork\TopoLinux
+command:	adb.exe -s KBSOQK7SFY7TPVKN pull  /sdcard/topo/topo.db C:/Users/xuyb/Desktop/topo_pad.db
