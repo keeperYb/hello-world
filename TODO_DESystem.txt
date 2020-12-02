@@ -1,0 +1,98 @@
+DESystem_PC
+
+
+-----------------------------------------
+原来的widget输入改为excel导入, 进数据库
+- 导入大型完整Excel的步骤:
+	- FileDialog选择Excel
+	- 根据一个SheetDict去选择sheetIndex
+	- 根据ExcelName和SheetIndex 进入ExcelHelper
+	- 得到完整的数据
+	- ?? 数据显示在widget上
+
+- 各小节对应的类和数据库
+	- 报告签批页 FrmSignOff de_report_sign_off
+	- 测评机构及委托方信息 FrmInstitutionClient 
+			- 测评机构 de_report_institution
+			- 委托方 de_report_client
+	- 任务描述  FrmTaskDesc de_report_task_description
+	- 第二部分  系统检测 FrmPart2
+		- 1. 检测依据 FrmDetectionBasis 无db对应
+		- 2. 检测工具 FrmDetectionTool  de_report_detection_tool
+		- 3. 检测结果及得分 FrmEvaluationDetail 已经做好
+		- 4. 检测意见 FrmDetectionOpinion 可能要更改表...
+
+
+导入新的Excel表格大概流程(普通 m*n 表格):
+	- 编辑excel模板, 序号不用
+	- 编辑 .ui 文件, 加入pushButtonImport, 对 .UI文件 pyuic
+	- initUi 加入 self.initPushButtonImport()
+	-  def onImport(self):
+        """button_import 点击事件"""
+        unchangableColumns = [0]  # 没有前置列则设为[]
+        super().handleImportClicked_table(tableWidget=self.tableWidget,
+                                          ormModelType=Dexx,
+                                          ormModelList=self._reportxx,
+                                          unchangableColumns=unchangableColumns)
+        pass
+	- 编辑 itemChanged() 方法, 添加:
+		if xx.NodeId is None:
+            xx.NodeId = self.reportNode.Id
+
+
+
+-----------------------------------------
+像在qtdesigner里拖拽widget一样, 用户自由排布第一部分各小节的顺序
+-----------------------------------------
+合并word文档, 格式和给出的word模板一致
+	- docx 直接生成和test.docx一致的格式...
+	- 动态地添加/删除小节, 添加/删除表格
+
+!! 用python-docx新建word文档, 而不要自行新建..
+
+
+
+-----------------------------------------
+
+在PC端打分
+-- qt, treeWidget显示样式
+-- 分数设置四位小数, 包括widget显示, DB存入  # 想要全局使用, 应该放在哪个模块
+	-- 全局使用的模块: 显示--WidgetHelper, 存储到DB: XX_Dao
+- ? basic_dao: setAttrAfterCreate, setAttrAfterUpdate
+- ? ORM obj 类可以作为 dao 来使用吗...
+- !!对象的list, 即使是list.copy()也没有用, 要用 copy.deepcopy(list)
+ -----------------------------------------
+DataSync.py	数据同步
+同步数据库不完整
+-----------------------------------------
+***********************************************************************************
+Debug ReportManage.py
+点击多次tableWidget后, 生成速度变慢. 但是关闭widget可以重置速度
+-出错问题: 未查明
+***********************************************************************************
+Debug PageEvaluationDetail.py
+
+7.1.4.8抗抵赖
+-出错问题: keyRow.endRow, 结束的关键行没有处理好
+***********************************************************************************
+Others:
+------------------------------------
+Python Generator 对象是什么...
+------------------------------------
+! 给对象属性赋值:
+	                if column_names[column] in model_type.__dict__:
+                    setattr(model, column_names[column], list_item[column])
+------------------------------------
+itemId = 1329607703529521154
+taskId = 1327155104771612672
+contentId = 1329607703529521152
+# todo 暂时注释, 注意改回
+
+start_time = time.time()
+
+reportId = 1326339010297208833
+
+        self.session.query(self.modelClass).
+        filter(self.modelClass.MethodId = deMethod.Id,
+        self.modelClass.TaskId == taskId).first()
+
