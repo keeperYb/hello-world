@@ -1,8 +1,14 @@
 DESystem_PC
 
-
+? python-docx: 读取word中的图片 / 插入visio
 -----------------------------------------
 原来的widget输入改为excel导入, 进数据库
+...dict 太多了...有点晕了...
+- 得到twoColumn-table的value-list 的过程:
+	- 新建一个TableTwoColumn对象, 其中有:{table_name, sheet_index, attr_list}
+	- getValueList
+-------
+
 - 导入大型完整Excel的步骤:
 	- FileDialog选择Excel
 	- 根据一个SheetDict去选择sheetIndex
@@ -66,18 +72,6 @@ DataSync.py	数据同步
 同步数据库不完整
 -----------------------------------------
 ***********************************************************************************
-Debug ReportManage.py
-点击多次tableWidget后, 生成速度变慢. 但是关闭widget可以重置速度
--出错问题: 未查明
-***********************************************************************************
-Debug PageEvaluationDetail.py
-
-7.1.4.8抗抵赖
--出错问题: keyRow.endRow, 结束的关键行没有处理好
-***********************************************************************************
-Others:
-------------------------------------
-Python Generator 对象是什么...
 ------------------------------------
 ! 给对象属性赋值:
 	                if column_names[column] in model_type.__dict__:
