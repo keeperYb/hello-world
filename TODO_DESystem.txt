@@ -1,7 +1,74 @@
 DESystem_PC
-
+? TypeError: SQLite Date type only accepts Python date objects as input. 那什么时候, 怎么处理excel-date?
 ? python-docx: 读取word中的图片 / 插入visio
+? 格式 --excel的格式, db的格式
+! return == return None ...
+
+? xlrd 处理合并的单元格?? 合并的单元格, 拆分出来要有东西... 能识别单元格合并吗?
 -----------------------------------------
+!- 设置useless_row/ 判断useless_row 都要改...
+!- 看来要默认设一些SortNo...
+	File "D:\PythonWork\DESystem_PC\MainWin\WordWindow\SinglePage\PageVulnerabilityOpinion.py", line 69, in showPageData
+    exec("self.LineEditVulnerabilitySn{}.setText(model.VulnerabilitySn)".format(model.SortNo))
+  File "<string>", line 1, in <module>
+AttributeError: 'FrmVulnerabilityOpinion' object has no attribute 'LineEditVulnerabilitySnNone'
+
+
+!- excel_sheet 中心节点, 各种'其他情况', 设在DeReportNode下, 注意ReportId, Id(nodeId) 的设置,确保是更新记录而不是新增记录
+
+附加表的基本模板:
+		'type': TableType.TWO_COLUMN,
+        'name': '',
+        'end_flag': '',
+        'useless_rows': [],
+        'value_list': [],
+        'attrToSet_list': [		# 注意填写...
+            '',
+        ],
+        'orm_class': DeReportNode,  # 小表都填到DeReportNode中去
+        'is_header_name_useless': False,  # 小表没有表名, name是第一行
+        'node_index': NodeIndex.CENTRAL_NODE,
+
+- table_xx 基本模板: 
+        'type': TableType.,
+        'name': '',
+        'end_flag': '',
+        'useless_rows': [''],  # 注意填写
+        'value_list': [],
+        'attrToSet_list': [
+            'SortNo',
+            'Post',
+            'PostName',
+            'PersonName',
+            'PersonDepartment',
+            'PersonTitle',
+            'Certificate',
+            'TrainDate'
+        ],
+        'field_checktype_list': [
+            FieldCheckType.NO_CHECK_TYPE,
+            FieldCheckType.NO_CHECK_TYPE,
+            FieldCheckType.NO_CHECK_TYPE,
+            FieldCheckType.NO_CHECK_TYPE,
+            FieldCheckType.NO_CHECK_TYPE,
+            FieldCheckType.NO_CHECK_TYPE,
+            FieldCheckType.NO_CHECK_TYPE,
+            FieldCheckType.DATE_TYPE,
+        ],
+        'orm_class': ,  
+        'node_index': NodeIndex.CENTRAL_NODE,
+
+- 整体导入数据库的人员操作步骤:
+	- 找到对应的excel
+	- 根据表名称, 在database.py 中查找对应的ORM_class, 据此确定表的 alias_name
+	- 在excel的相应位置标注 对应字段名称
+	- 转到ExcelInfo 类中, 完成 tables_in_sheets 和 对应table_alias_name的配置
+	- 转到ReportManage.py 进行测试, 现阶段不用commit到DB
+	
+	
+	
+	
+	
 - 整体存入数据库的步骤:
 	- 选择一个excel
 	- 读出其中的所有sheets
