@@ -5,7 +5,16 @@ DESystem_PC
 ! return == return None ...
 
 ? xlrd 处理合并的单元格?? 合并的单元格, 拆分出来要有东西... 能识别单元格合并吗?
+. Python Tutorial==7.Input and Output
 -----------------------------------------
+导入全部excel测试阶段:
+有问题的表格:
+	?- 安全保密集成单位情况表_少一列:单位名称 3.1.17, unitType似乎要sortNo * 10...
+	?- 安全保密管理人员情况表-3.1.15, 少一列:岗位职责, Post似乎要sortNo * 10...
+	- 国产化替代情况表-3.1.18, 替代数量 和 总数量 显示为小数, 应为整数 [参考 VLAN划分情况表, SortNo是什么格式]
+		- 这个问题可以选一个地方来处理：1. python程序 2.数据库
+-----------------------------------------
+
 !- 设置useless_row/ 判断useless_row 都要改...
 !- 看来要默认设一些SortNo...
 	File "D:\PythonWork\DESystem_PC\MainWin\WordWindow\SinglePage\PageVulnerabilityOpinion.py", line 69, in showPageData

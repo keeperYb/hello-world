@@ -1,0 +1,34 @@
+.. are perhaps the most common kind of COMPLAINT you get ...
+
+============================================================
+Python Tutorial, 7.Input and Output
+
+most commonly used:		f = open('workfile', 'w')  # open(filename, mode)
+"""
+mode: string containing a few characters describing the way in which the file will be used.
+mode can be:
+	# these parameters are 'text mode'
+	- 'r', read only, the assumed(default) parameter if [mode] is omitted
+	- 'w', write only, erasing the existing file with the same name
+	- 'a', open the file for appending
+	- 'r+', for reading and writing
+
+	# 'binary mode'
+	- 'b', read and write in binary mode, not 'text mode', i.e., 'rb', 'wb'
+"""
+GOOD PRACTICE to use 'with' keyword, automatically close file after using, along with auto exception-handling
+with open('workfile') as f:
+...  read_data = f.read()
+
+------------------------------------------------------------
+7.2.1. Methods of File Objects
+
+commonly used methods (with a file object f, which is already opened):
+	- f.read(): 		return all
+	- f.readline(): 	return next line, until the end of file
+	- f.readlines() OR list(f): 	return a list of lines
+	- f.write(string):	writes the contents of string to the file, returning the number of characters written.
+	- f.tell():			get the cursor(current position) of the file 
+	- f.seek(offset, whence):		
+	
+============================================================
