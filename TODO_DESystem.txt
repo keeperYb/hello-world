@@ -1,18 +1,25 @@
 DESystem_PC
-? TypeError: SQLite Date type only accepts Python date objects as input. 那什么时候, 怎么处理excel-date?
 ? python-docx: 读取word中的图片 / 插入visio
 ? 格式 --excel的格式, db的格式
-! return == return None ...
-
 ? xlrd 处理合并的单元格?? 合并的单元格, 拆分出来要有东西... 能识别单元格合并吗?
-. Python Tutorial==7.Input and Output
+? 多次导入, 解决问题的单元格依然还在, 是TableObj的问题
+	- 难道dict 和 obj.param 由于 setattr 而连接起来了[不是因为setattr, 而是因为list, 变成引用传递了]
+! 慎用 xx = list, 因为是引用传递...
+! 初始化对象的时候, 还是老实用self.xx, 而不要在class里写成员变量. 因为class里的成员变量的生命周期是不可预期的...
+. TypeError: SQLite Date type only accepts Python date objects as input. 那什么时候, 怎么处理excel-date?
+	-读excel的时候就处理,格式错误时存入默认的古代日期
+! return == return None ...
 -----------------------------------------
-导入全部excel测试阶段:
+- 设定表格样式 [包括表格内容, 表格线]
+ # set table style
+    styles = dcmt.styles
+    table.style = 'LightShading'
+-----------------------------------------
+-导入全部excel测试阶段:
 有问题的表格:
 	?- 安全保密集成单位情况表_少一列:单位名称 3.1.17, unitType似乎要sortNo * 10...
 	?- 安全保密管理人员情况表-3.1.15, 少一列:岗位职责, Post似乎要sortNo * 10...
-	- 国产化替代情况表-3.1.18, 替代数量 和 总数量 显示为小数, 应为整数 [参考 VLAN划分情况表, SortNo是什么格式]
-		- 这个问题可以选一个地方来处理：1. python程序 2.数据库
+
 -----------------------------------------
 
 !- 设置useless_row/ 判断useless_row 都要改...
@@ -39,33 +46,40 @@ AttributeError: 'FrmVulnerabilityOpinion' object has no attribute 'LineEditVulne
         'node_index': NodeIndex.CENTRAL_NODE,
 
 - table_xx 基本模板: 
-        'type': TableType.,
-        'name': '',
-        'end_flag': '',
-        'useless_rows': [''],  # 注意填写
+         'type': TableType.TWO_COLUMN,
+        'name': '报告签批页',
+        'end_flag': END_SYMBOL,
+        'useless_rows': ['报告签批页'],
         'value_list': [],
         'attrToSet_list': [
-            'SortNo',
-            'Post',
-            'PostName',
-            'PersonName',
-            'PersonDepartment',
-            'PersonTitle',
-            'Certificate',
-            'TrainDate'
+            'SysName',
+            'UseUnit',
+            'DeResult',
+            'TechnicalScore',
+            'ManageScore',
+            'ReviewResult',
+            'ReviewDate',
+            'ExamineResult',
+            'ExamineDate',
+            'ApprovedResult',
+            'ApprovedDate',
         ],
         'field_checktype_list': [
-            FieldCheckType.NO_CHECK_TYPE,
-            FieldCheckType.NO_CHECK_TYPE,
-            FieldCheckType.NO_CHECK_TYPE,
-            FieldCheckType.NO_CHECK_TYPE,
-            FieldCheckType.NO_CHECK_TYPE,
-            FieldCheckType.NO_CHECK_TYPE,
-            FieldCheckType.NO_CHECK_TYPE,
-            FieldCheckType.DATE_TYPE,
+            FieldCheckType.NO_CHECK_TYPE,  # 'SysName',
+            FieldCheckType.NO_CHECK_TYPE,  # 'UseUnit',
+            FieldCheckType.NO_CHECK_TYPE,  # 'DeResult',
+            FieldCheckType.SCORE_TYPE,  # 'TechnicalScore',
+            FieldCheckType.SCORE_TYPE,  # 'ManageScore',
+            FieldCheckType.NO_CHECK_TYPE,  # 'ReviewResult',
+            FieldCheckType.DATE_TYPE,  # 'ReviewDate',
+            FieldCheckType.NO_CHECK_TYPE,  # 'ExamineResult',
+            FieldCheckType.DATE_TYPE,  # 'ExamineDate',
+            FieldCheckType.NO_CHECK_TYPE,  # 'ApprovedResult',
+            FieldCheckType.DATE_TYPE,  # 'ApprovedDate',
         ],
-        'orm_class': ,  
-        'node_index': NodeIndex.CENTRAL_NODE,
+        'field_obj_list': [],  # 存入field_obj_list对象
+        'orm_class': Dexx,
+        'cell_list': []  # excel 中对应的单元格的名字, 不用都写, 只有在需要错误检查的表中再填'
 
 - 整体导入数据库的人员操作步骤:
 	- 找到对应的excel

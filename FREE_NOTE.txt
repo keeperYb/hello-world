@@ -1,5 +1,17 @@
 .. are perhaps the most common kind of COMPLAINT you get ...
-
+============================================================
+有趣的问题:
+- 几何, 如何用直尺(无刻度)将一张白纸裁成三等分?
+============================================================
+python-docx: Understanding Styles:
+A style has 3 identifying properties:
+	- name
+	
+	- style_id: 
+	is used internally to key a content object such as a paragraph to its style,  is NOT GUARANTEED to be stable across saves...
+	it's NOT RECOMMENDED to use style_id in python-docx.
+	
+	- type
 ============================================================
 Python Tutorial, 7.Input and Output
 
