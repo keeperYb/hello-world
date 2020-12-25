@@ -10,8 +10,10 @@ DESystem_PC
 	-读excel的时候就处理,格式错误时存入默认的古代日期
 ! return == return None ...
 -----------------------------------------
+- 自动操作复制模板docx文件, 然后删除docx文档的所有信息, 以此来获得模板里的所有样式格式
 - 设定表格样式 [包括表格内容, 表格线]
- # set table style
+- 修改 python-docx 自创的默认样式
+ # set table style  # only useful in docx files which has default table styles
     styles = dcmt.styles
     table.style = 'LightShading'
 -----------------------------------------

@@ -1,7 +1,13 @@
 ------------------------------------------------------------------------------------------
-今日日程: 2020-12-22
-- 表格样式复制
+今日日程: 2020-12-24
+- 拖拽章节细化:
+	-重新定义章节类
+	-章节分层级, 加入判断accept机制
+	-自动排序, 包括内部元素的一些子排序...
 - !crit 从word文档自动生成dict代码(使用计算机容易识别的标记)
+	- python-documentation, 7.2.2. Saving structured data with json
+- docxcompose
+- 复制, 清空word文档
 - 自动目录生成, 调节章节序号如3.1.1
 - word报告, 格式和内容分离, 只根据样式来配置格式
 	-ok 生成和表20 一致的格式 type--appearance, 
@@ -11,10 +17,11 @@
 - logging 代替print, 帮助发行版程序查看bug问题
 - 去专用机器上看申报系统界面(下午)
 ------------------------------------------------------------------------------------------
-- !发布自己的Demo, 注意import前, 要sys.path.
+- ?好像没有互相import的做法...?
+- ?python enum 判断相等
+- !发布自己的Demo, 注意import前, 要 sys.path.append(rootPath)
 - *? 如何一键切换[交付环境] 和 [测试环境]?
 - ! learn some markdown on github
-- ? if-elif 和 if-if 和 if-else 的执行流顺序的区别? 
 - ? session可以在merge了很多后, 一次性commit吗? sqlAlchemy的session是什么含义??
 - python qt drag and drop
 - qt for python: https://doc.qt.io/qtforpython/
