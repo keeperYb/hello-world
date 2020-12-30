@@ -9,6 +9,7 @@ DESystem_PC
 . TypeError: SQLite Date type only accepts Python date objects as input. 那什么时候, 怎么处理excel-date?
 	-读excel的时候就处理,格式错误时存入默认的古代日期
 ! return == return None ...
+! 10:23	Error merging: unable to unlink old 'DataBase/evaluation.db': Invalid argument, db 在管控时, 关闭数据库管理工具...
 -----------------------------------------
 - 自动操作复制模板docx文件, 然后删除docx文档的所有信息, 以此来获得模板里的所有样式格式
 - 设定表格样式 [包括表格内容, 表格线]
