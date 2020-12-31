@@ -1,5 +1,10 @@
 ------------------------------------------------------------------------------------------
-今日日程: 2020-12-30
+今日日程: 2020-12-31
+- fastapi 新项目, 参考 PythonWork/TopoService
+	- * async in FastAPI
+	- router 路由
+	- 数据验证
+	- 授权
 - docx-tpl 进行合并
 - 预览显示在widget中
 	- 对每个sectionObj 指定一个orm_obj, 获取数据...
@@ -9,13 +14,11 @@
 - 拖拽章节细化:
 	-右键菜单增加上移,下移
 	-自动排序, 包括内部元素(图片,表 的序号)的一些子排序
-- !crit 从word文档自动生成dict代码(使用计算机容易识别的标记)
+- !crit 从word文档(或其他文档)自动生成dict代码(使用计算机容易识别的标记)
+	- 读取源文档-->编写自动生成代码的脚本
 	- python-documentation, 7.2.2. Saving structured data with json
 - docxcompose
 - 复制, 清空word文档
-- word报告, 格式和内容分离, 只根据样式来配置格式
-	-ok 生成和表20 一致的格式 type--appearance, 
-	-ok 对现有的文档提取格式, 对新的文档应用格式, 就像Photoshop取色器...
 
 - 使用json存储数据
 - logging 代替print, 帮助发行版程序查看bug问题
