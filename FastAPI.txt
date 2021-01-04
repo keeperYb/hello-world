@@ -1,0 +1,97 @@
+== indicates the start of one Chapter(章节)
+============================== 
+-- indicates the start of one Section(小节)
+------------------------------
+
+FastAPI learning Note:
+First Steps==============================
+
+Recap, step by step------------------------------
+###
+from fastapi import FastAPI
+
+app = FastAPI()  # object 'app' is an instance of class FastAPI
+
+# a path operation decorator
+@app.get("/")   # use the path '/' , use HTTP 'get' operation
+# the path operation function: root()
+async def root():
+    return {"message": "Hello World"}
+###
+
+Path Parameters==============================
+###
+from fastapi import FastAPI
+
+app = FastAPI()
+
+
+@app.get("/items/{item_id}")
+async def read_item(item_id):
+    return {"item_id": item_id}
+###
+Data Conversion------------------------------
+###
+# with the same Python type declaration(int here), FastAPI gives you data validation.
+async def read_item(item_id: int):  
+    # do sth
+###
+Order Matters------------------------------
+# order matters, specific one should be declared BEFORE common one,
+# in this example, '/users/me' should be declared before '/users/{user_id}'
+
+###
+@app.get("/users/me")
+async def read_user_me():
+    return {"user_id": "the current user"}
+
+
+@app.get("/users/{user_id}")
+async def read_user(user_id: str):
+    return {"user_id": user_id}
+###
+Predefined values------------------------------(working with ...)
+# work with an enum as the predefined value ...
+Path parameters containing paths------------------------------
+# Recursion... using path converter from Starlette, like this: 
+/files/{file_path:path}
+# the last part, :path, tells it that the parameter should match any path
+
+
+Query Parameters============================== 
+# other parameters that are not part of the path parameters, they are 'query' parameters
+from fastapi import FastAPI
+
+app = FastAPI()
+
+fake_items_db = [{"item_name": "Foo"}, {"item_name": "Bar"}, {"item_name": "Baz"}]
+
+
+@app.get("/items/")
+async def read_item(skip: int = 0, limit: int = 10):
+    return fake_items_db[skip : skip + limit]
+# The query is the set of key-value pairs that go after the ? in a URL, separated by & characters.
+# For example, in the URL:
+http://127.0.0.1:8000/items/?skip=0&limit=10
+
+Defaults------------------------------
+from fastapi import FastAPI
+
+app = FastAPI()
+
+fake_items_db = [{"item_name": "Foo"}, {"item_name": "Bar"}, {"item_name": "Baz"}]
+
+
+@app.get("/items/")
+async def read_item(skip: int = 0, limit: int = 10):
+# skip = 0 , limit = 10 is the default parameter
+    return fake_items_db[skip : skip + limit]
+
+Optional Parameters------------------------------
+# parameter can be set to None, like this:
+from typing import Optional
+# ...
+async def read_item(item_id: str, q: Optional[str] = None):
+    pass
+
+Query parameter type conversion------------------------------

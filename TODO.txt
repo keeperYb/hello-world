@@ -1,5 +1,11 @@
 ------------------------------------------------------------------------------------------
-今日日程: 2020-12-31
+今日日程: 2020-1-4
+- 单页获取, 单页更新
+	- 从UI端获取信息, 转化为ORM_Obj并保存  先处理委托方信息:DeReportClient
+- 将DeSystem 的导入excel template 转到 DeService中
+	- uvicorn.run(app=app, host="0.0.0.0", port=5000)  # ? 四个0 代表动态分配ip?
+- ?! 本地分支的信息不要上传到远程分支上, 要怎么做...
+- ?? json --> python object
 - fastapi 新项目, 参考 PythonWork/TopoService
 	- * async in FastAPI
 	- router 路由
@@ -10,11 +16,8 @@
 	- 对每个sectionObj 指定一个orm_obj, 获取数据...
 		- 先对Lv3的section设定, 然后是lv2, lv1...
 	- 根据数据, 自动生成widget界面
-- python logging, 打包好了的程序也需要log
-- 拖拽章节细化:
-	-右键菜单增加上移,下移
-	-自动排序, 包括内部元素(图片,表 的序号)的一些子排序
-- !crit 从word文档(或其他文档)自动生成dict代码(使用计算机容易识别的标记)
+- ! python logging, 打包好了的程序也需要log
+- ! crit 从word文档(或其他文档)自动生成dict代码(使用计算机容易识别的标记)
 	- 读取源文档-->编写自动生成代码的脚本
 	- python-documentation, 7.2.2. Saving structured data with json
 - docxcompose
