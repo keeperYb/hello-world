@@ -95,3 +95,25 @@ async def read_item(item_id: str, q: Optional[str] = None):
     pass
 
 Query parameter type conversion------------------------------
+
+
+Request Body==============================
+# the client sends 'request body', the server returns 'response body'
+# To declare a request body, you use __Pydantic__ models with all their power and benefits.
+# Pydantic 是用来定义model的
+Import Pydantic's BaseModel------------------------------
+Create your data model------------------------------
+Declare it as a parameter------------------------------
+Results------------------------------
+Automatic Docs------------------------------
+Editor Support------------------------------
+# you get editor support if you use Pydantic model, instead of 'dict'
+
+Use the model------------------------------
+Request body + path + query parameters------------------------------
+
+
+Query Parameters and String Validations==============================
+
+
+
