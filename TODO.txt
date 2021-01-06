@@ -1,5 +1,16 @@
 ------------------------------------------------------------------------------------------
 今日日程: 2020-1-6
+- ! 自动生成代码, 参考:
+	- class PlatformUser(Base, BaseModel):
+    __tablename__ = "platform_user"
+    UserId = Column(String, name="user_id")
+    UserName = Column(String, name="user_name")
+    UserPW = Column(String, name="user_pw")
+    lastLoginTime = Column(DateTime, name='last_login_time')
+    lastLoginDevice = Column(String, name="last_login_device")
+    lastChangeTime = Column(DateTime, name='last_change_time')
+    lastChangeDevice = Column(String, name="last_change_device")
+	
 - ! pycharm自动生成注释(search for 'python integrated tools' , 'template')
 - ?? service 里的router干嘛的?
 - ?! 本地分支的信息不要上传到远程分支上, 要怎么做...
