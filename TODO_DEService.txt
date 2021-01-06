@@ -1,0 +1,9 @@
+- 单页获取, 单页更新
+	- 从UI端获取信息, 转化为ORM_Obj并保存  先处理委托方信息:DeReportClient
+- 将DeSystem 的导入excel template 转到 DeService中
+	- uvicorn.run(app=app, host="0.0.0.0", port=5000)  # ? 四个0 代表动态分配ip?
+?? - 手动配置... 能写脚本生成代码?
+	-打开原有的DeSystem, 确定在第几个section
+	-找到这个section需要用的orm_model, 配置api_model
+	-在/api/all_section_api.py写对应api_model的方法
+	- NOW: 任务描述

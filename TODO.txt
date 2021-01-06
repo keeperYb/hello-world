@@ -1,10 +1,9 @@
 ------------------------------------------------------------------------------------------
-今日日程: 2020-1-4
-- 单页获取, 单页更新
-	- 从UI端获取信息, 转化为ORM_Obj并保存  先处理委托方信息:DeReportClient
-- 将DeSystem 的导入excel template 转到 DeService中
-	- uvicorn.run(app=app, host="0.0.0.0", port=5000)  # ? 四个0 代表动态分配ip?
+今日日程: 2020-1-6
+- ! pycharm自动生成注释(search for 'python integrated tools' , 'template')
+- ?? service 里的router干嘛的?
 - ?! 本地分支的信息不要上传到远程分支上, 要怎么做...
+- ?? 数据库: 表嵌套该怎么设计: de_report_institution_person 和 de_report_sign_off
 - ?? json --> python object
 - fastapi 新项目, 参考 PythonWork/TopoService
 	- * async in FastAPI
@@ -20,11 +19,7 @@
 - ! crit 从word文档(或其他文档)自动生成dict代码(使用计算机容易识别的标记)
 	- 读取源文档-->编写自动生成代码的脚本
 	- python-documentation, 7.2.2. Saving structured data with json
-- docxcompose
 - 复制, 清空word文档
-
-- 使用json存储数据
-- logging 代替print, 帮助发行版程序查看bug问题
 - 去专用机器上看申报系统界面(下午)
 ------------------------------------------------------------------------------------------
 - ?好像没有互相import的做法...?
@@ -50,29 +45,39 @@
 结构问题?
 - 心跳获取数据库信息, 刷新页面
 	- 先做 任务 界面
-
 -------------------------
-
-
-
--------------------------
-
-
 与其他应用系统
 信息交互情况
 -------------------------
 PageEvaluationOpinion.py 
 word报告填充	mailmerge
 ----
-专家评估日期  _reportTaskDesc.AssessmentMeetingDate, 需要更改日期格式
-测评机构 _reportTaskDesc.DeInstitution
-召开地点 _reportTaskDesc.AssessmentMeetingAddress
-系统名称 _reportSignOff.SysName
-受检测单位(委托方名称)  _reportClient.ClientName
 ----
 界面填充?
 -------------------------
 git rm --cached <fileName> 	删除已经add, commit的文件管控, 不删除工作目录中的文件
 -------------------------
 MyQuest: Python Tutorial : Start
-指纹编号 5 6
+-------------------------
+Python 命名规范
+1.项目名称
+首字母大写+大写式驼峰，
+ProjectName
+
+2.模块名和包名
+全部小写+下划线驼峰
+module_name  package_name
+
+3.类名称，异常
+首字母大写+大写式驼峰，
+class ClassName:   ，ExceptionName
+
+4.全局变量、常量
+全部使用大写字母+下划线驼峰
+GLOBAL_VAR_NAME，CONSTANT_NAME
+
+5.方法名，函数名，其余变量，参数，实例
+全部小写+下划线驼峰
+method_name，function_name，instance_var_name, function_parameter_name, local_var_name
+
+6.处理计数器外，不使用单字母命名

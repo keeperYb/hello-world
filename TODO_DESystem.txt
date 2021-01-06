@@ -1,8 +1,8 @@
 DESystem_PC
 ? python-docx: 读取word中的图片 / 插入visio
 ? 格式 --excel的格式, db的格式
-? xlrd 处理合并的单元格?? 合并的单元格, 拆分出来要有东西... 能识别单元格合并吗?
-? 多次导入, 解决问题的单元格依然还在, 是TableObj的问题
+? xlrd 能识别单元格合并吗?
+. 多次导入, 解决问题的单元格依然还在, 是TableObj的问题
 	- 难道dict 和 obj.param 由于 setattr 而连接起来了[不是因为setattr, 而是因为list, 变成引用传递了]
 ! 慎用 xx = list, 因为是引用传递...
 ! 初始化对象的时候, 还是老实用self.xx, 而不要在class里写成员变量. 因为class里的成员变量的生命周期是不可预期的...
