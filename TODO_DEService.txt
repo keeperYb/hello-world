@@ -7,3 +7,4 @@
 	-找到这个section需要用的orm_model, 配置api_model
 	-在/api/all_section_api.py写对应api_model的方法
 	- NOW: 任务描述
+- ? OPTIONS 类型报的400错误, 似乎通过配置main.py中的origins解决了...

@@ -2,6 +2,7 @@
 ============================== 
 -- indicates the start of one Section(小节)
 ------------------------------
+跳过章节标记: SKIPPED
 
 FastAPI learning Note:
 First Steps==============================
@@ -114,6 +115,100 @@ Request body + path + query parameters------------------------------
 
 
 Query Parameters and String Validations==============================
+.
+.SKIPPED
+.
+
+
+SQL(Relational) Databases==============================
+ORMs------------------------------
+File Structure------------------------------
+.
+└── sql_app
+    ├── __init__.py
+    ├── crud.py (details in 'CRUD utils')
+    ├── database.py (details in 'Create the SQLAlchemy parts')
+    ├── main.py
+    ├── models.py (details in 'Create the database models')
+    └── schemas.py (details in 'Create the Pydantic models')
+Create the SQLAlchemy parts------------------------------
+Steps:
+-Import the SQLAlchemy parts
+-Create a database URL for SQLAlchemy
+-Create the SQLAlchemy engine
+	Note: 
+	-connect_args={"check_same_thread": False}
+	-'we will make sure each request gets its OWN DATABASE CONNECTION SESSION in a dependency'
+-Create a SessionLocal class
+	-'We name it SessionLocal to distinguish it from the Session we are importing from SQLAlchemy.'
+-Create a Base class
+
+Create the database models------------------------------
+Steps:
+-Create SQLAlchemy models from the Base class
+-Create model attributes/columns
+-Create the relationships
+	# Critical! code like:
+	from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
+	from sqlalchemy.orm import relationship
+
+	from .database import Base
+
+
+	class User(Base):
+		__tablename__ = "users"
+
+		id = Column(Integer, primary_key=True, index=True)
+		email = Column(String, unique=True, index=True)
+		hashed_password = Column(String)
+		is_active = Column(Boolean, default=True)
+
+		items = relationship("Item", back_populates="owner") # relation...
+
+
+	class Item(Base):
+		__tablename__ = "items"
+
+		id = Column(Integer, primary_key=True, index=True)
+		title = Column(String, index=True)
+		description = Column(String, index=True)
+		owner_id = Column(Integer, ForeignKey("users.id"))
+
+		owner = relationship("User", back_populates="items") # relation...
+
+Create the Pydantic models------------------------------
+Steps:
+-Create initial Pydantic models/schemas ?? 
+	# Class ItemCreate ? >> see comments BELOW
+	-SQLAlchemy style and Pydantic style
+-Create Pydantic models/schemas for reading/returning
+	# Class Item , maybe means 'ItemRead'... corresponding to 'ItemCreate'
+-Use Pydantic's orm_mode
+	# add an internal Config class in class : Item and User.
+	# the Config class is used to provide configurations to Pydantic
+	# Without orm_mode, if you returned a SQLAlchemy model from your path operation, it wouldn't include the relationship data.
+
+CRUD utils------------------------------
+ # steps of create a SQLAlchemy model instance with some data:
+ #	- add that instance object to your database session.
+ #	- commit the changes to the database (so that they are saved).
+ #	-* REFRESH your instance (so that it contains any new data from the database, like the generated ID).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
