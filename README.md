@@ -2,3 +2,5 @@
 用来测试git 和 github  
 
 与其说是用来测试，不如说是学习
+
+test new Git for Windows
