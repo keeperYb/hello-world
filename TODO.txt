@@ -1,4 +1,153 @@
 ------------------------------------------------------------------------------------------
+今日日程: 2020-1-12
+**********
+VERY IMPORTANT
+- 自动化处理, orm_class --> view_class
+- SQLAlchemy Session (in web...)
+- FastAPI
+**********
+-?  try...except...else这个控制块的逻辑顺序是什么?
+-? 登录, user_id...有很大的问题...例如:
+	CREATE TABLE "platform_user" (
+		  "id" INT64 primary key,
+		  "user_id" varchar(20),
+		  "user_name" varchar(20),
+		  "user_pw" varchar(100),
+		  "last_login_time" TIMESTAMP,
+		  "last_login_device" varchar(50),
+		  "last_change_time" TIMESTAMP,
+		  "last_change_device" varchar(50),
+		  "row_status" TINYINT DEFAULT 1,
+		  "create_by" INT64 NOT NULL,
+		  "create_time" TIMESTAMP DEFAULT (datetime('now', 'localtime')),
+		  "create_device" varchar(50),
+		  "update_by" INT64,
+		  "update_time" TIMESTAMP DEFAULT (datetime('now', 'localtime')),
+		  "update_device" varchar(50),
+		  "s_time" TIMESTAMP DEFAULT (datetime('now', 'localtime'))
+);
+
+- ? 在PyCharm中, 自动生成author, date等信息
+- ! 申报任务(declare), 密码修改(admin)
+- ! web的数据库连接池, 不要把DbHelper单例化, 可以用localSession
+- ? sqlalchemy 的 session 为什么没有自动提示?
+- ? request 参数是否必填
+- . 框架的Tutorial很全面, 可以一读
+- ! 自动生成代码(也即改变文本形式, 生成新的文本), 参考输入:
+	class DeReportTaskDesc(Base, BasePageModel):
+    __tablename__ = 'de_report_task_description'
+    # 通知下发时间
+    NoticeSendDate = Column(Date, name='notice_send_date')
+    # 谁发的通知
+    NoticeSender = Column(String, name='notice_sender')
+    # 测评机构
+    DeInstitution = Column(String, name='de_institution')
+    # 检测开始日期
+    DetectionBeginDate = Column(Date, name='detection_begin_date')
+    # 检测结束日期
+    DetectionEndDate = Column(Date, name='detection_end_date')
+    # 专家评估会召开时间
+    AssessmentMeetingDate = Column(Date, name='assessment_meeting_date')
+    # 专家评估会召开地点
+    AssessmentMeetingAddress = Column(String, name='assessment_meeting_address')
+    # 报告产生时间
+    ReportedDate = Column(Date, name='reported_date')
+	
+	对应参考输出:
+	class DeReportTaskDescApi(BaseApi):
+    # 通知下发时间
+    NoticeSendDate: datetime = None
+    # 谁发的通知
+    NoticeSender: str
+    # 测评机构
+    DeInstitution: str
+    # 检测开始日期
+    DetectionBeginDate: datetime = None
+    # 检测结束日期
+    DetectionEndDate: datetime = None
+    # 专家评估会召开时间
+    AssessmentMeetingDate: datetime = None
+    # 专家评估会召开地点
+    AssessmentMeetingAddress: str
+    # 报告产生时间
+    ReportedDate: datetime = None
+    pass
+	
+	
+- ! pycharm自动生成注释(search for 'python integrated tools' , 'template')
+- ?? service 里的router干嘛的?
+- ?! 本地分支的信息不要上传到远程分支上, 要怎么做...
+- ?? 数据库: 表嵌套该怎么设计: de_report_institution_person 和 de_report_sign_off
+- ?? json --> python object
+
+- docx-tpl 进行合并
+- ? python logging, 打包好了的程序也需要log
+- ! crit 从word文档(或其他文档)自动生成dict代码(使用计算机容易识别的标记)
+	- 读取源文档-->编写自动生成代码的脚本
+	- python-documentation, 7.2.2. Saving structured data with json
+- 复制, 清空word文档
+- 去专用机器上看申报系统界面(下午)
+------------------------------------------------------------------------------------------
+- ?好像没有互相import的做法...?
+- ?python enum 判断相等
+- !发布自己的Demo, 注意import前, 要 sys.path.append(rootPath)
+- *? 如何一键切换[交付环境] 和 [测试环境]?
+- ! learn some markdown on github
+- ? session可以在merge了很多后, 一次性commit吗? sqlAlchemy的session是什么含义??
+- python qt drag and drop
+- qt for python: https://doc.qt.io/qtforpython/
+------------------------------------------------------------------------------------------
+!- 自动生成代码(dict) 的脚本
+!- 用独立文件(config)来记录dict, 而不是在程序中
+.- 一个属性对应一个方法的dict, 怎么方法会自动执行: 不加括号就不会自动执行
+------------------------------------------------------------------------------------------
+
+? 详细设计还不过关...
+------------------------------------------------------------------------------------------
+? 面向对象- 数据和操作封装在一处, 是什么含义...
+------------------------------------------------------------------------------------------
+? Python Generator 对象是什么...
+-------------------------
+结构问题?
+- 心跳获取数据库信息, 刷新页面
+	- 先做 任务 界面
+-------------------------
+与其他应用系统
+信息交互情况
+-------------------------
+PageEvaluationOpinion.py 
+word报告填充	mailmerge
+----
+----
+界面填充?
+-------------------------
+git rm --cached <fileName> 	删除已经add, commit的文件管控, 不删除工作目录中的文件
+-------------------------
+MyQuest: Python Tutorial : Start
+-------------------------
+Python 命名规范
+1.项目名称
+首字母大写+大写式驼峰，
+ProjectName
+
+2.模块名和包名
+全部小写+下划线驼峰
+module_name  package_name
+
+3.类名称，异常
+首字母大写+大写式驼峰，
+class ClassName:   ，ExceptionName
+
+4.全局变量、常量
+全部使用大写字母+下划线驼峰
+GLOBAL_VAR_NAME，CONSTANT_NAME
+
+5.方法名，函数名，其余变量，参数，实例
+全部小写+下划线驼峰
+method_name，function_name，instance_var_name, function_parameter_name, local_var_name
+
+=======
+------------------------------------------------------------------------------------------
 今日日程: 2020-1-11
 - ! GitHub guides: https://guides.github.com/
 - ! web的数据库连接池, 不要把DbHelper单例化
@@ -95,4 +244,5 @@ GLOBAL_VAR_NAME，CONSTANT_NAME
 全部小写+下划线驼峰
 method_name，function_name，instance_var_name, function_parameter_name, local_var_name
 
+>>>>>>> 29f6e9023d0af7e1eec2602b054e1cb072eaa6f5
 6.处理计数器外，不使用单字母命名

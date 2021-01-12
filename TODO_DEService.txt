@@ -1,3 +1,22 @@
+-------------------------WORKS
+- 总体情况(system_info, ORM:DeReportSystemInfo), DESystem各小节都先放到shared目录
+- 从bll开始, 新建session对象, 并且把session对象作为参数传输给dal处理
+- fastapi 新项目, 可参考 PythonWork/TopoService
+	- router 路由
+	- 数据验证
+	- 授权
+
+-------------------------WONDERS
+-? class DeDeclareView(BaseView) 检查属性是否必填是在类创建的时候??
+	- 使用一个DeDeclareViewCreator [用于给一些默认值...]
+- 将DeSystem 的导入excel template 转到 DeService中
+	- uvicorn.run(app=app, host="0.0.0.0", port=5000)  # ? 四个0 代表动态分配ip?
+-? 手动配置步骤... 能写脚本生成代码?
+	-打开原有的DeSystem, 确定在哪个section
+	-找到这个section需要用的orm_model, 配置api_model
+	-在/api/all_section_api.py写对应api_model的方法
+	- NOW: 任务描述
+- ? OPTIONS 类型报的400错误, 似乎通过配置main.py中的origins解决了...
 - 单页获取, 单页更新
 	- 从UI端获取信息, 转化为ORM_Obj并保存  先处理委托方信息:DeReportClient
 - 将DeSystem 的导入excel template 转到 DeService中
@@ -8,3 +27,39 @@
 	-在/api/all_section_api.py写对应api_model的方法
 	- NOW: 任务描述
 - ? OPTIONS 类型报的400错误, 似乎通过配置main.py中的origins解决了...
+
+
+------------------------------------------基本模板(api layer)
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+import os
+import sys
+
+# 引入项目目录
+sys.path.append(os.getcwd())
+sys.path.append(os.getcwd() + '/utils')
+from routers import router  # 分层引用router
+from view.other_common_view import BaseResult
+
+
+@router.get("/system_info/detail", summary='获取 总体信息 的数据库记录')
+async def detail():
+    """
+    获取 总体信息 的数据库记录
+
+    :return: BaseResult
+    """
+    pass
+
+
+@router.post("system_info/save", summary='保存 总体情况 到数据库中')
+async def save(view_obj: XXView):
+    """
+    保存 总体情况 到数据库中
+
+    :param view_obj: DeReportSystemInfoView 对应obj
+    :return: BaseResult
+    """
+
+    pass

@@ -1,0 +1,5 @@
+- sqlAlchemy的session的类型:
+	sqlalchemy.orm.session.Session
+- sqlalchemy的Update:
+	- session.query(model_class).filter(model_class.UserId == user_id).\
+		      update({model_class.UserPW: hashed_user_pwd})

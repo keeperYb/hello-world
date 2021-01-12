@@ -3,4 +3,4 @@ needs to reimplement: dragEnterEvent()  and dropEvent()
 似乎是dragMoveEvent()
 需要mimeData?
 	mimeData->setData(mimeType, data);
-    drag->setMimeData(mimeData);
+    	drag->setMimeData(mimeData);
