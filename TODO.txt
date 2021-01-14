@@ -1,11 +1,13 @@
 ------------------------------------------------------------------------------------------
 今日日程: 2020-1-12
 **********
-VERY IMPORTANT
+VERY IMPORTANT !!
+- 每天push一次代码到服务器上, git本地会崩...
 - 自动化处理, orm_class --> view_class
 - SQLAlchemy Session (in web...)
 - FastAPI
 **********
+- 更新firefox, 查看merge和rebase的差别
 -?  try...except...else这个控制块的逻辑顺序是什么?
 -? 登录, user_id...有很大的问题...例如:
 	CREATE TABLE "platform_user" (
@@ -26,8 +28,8 @@ VERY IMPORTANT
 		  "update_device" varchar(50),
 		  "s_time" TIMESTAMP DEFAULT (datetime('now', 'localtime'))
 );
-
-- ? 在PyCharm中, 自动生成author, date等信息
+- . https://ea.jetbrains.com/browser/ea_reports/6074559 (PC01 PyCharm错误报告)
+- ? 在PyCharm中, 注释自动生成author, date等信息
 - ! 申报任务(declare), 密码修改(admin)
 - ! web的数据库连接池, 不要把DbHelper单例化, 可以用localSession
 - ? sqlalchemy 的 session 为什么没有自动提示?

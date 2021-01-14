@@ -1,12 +1,18 @@
 -------------------------WORKS
+- 做硬件平台的api，描述和平台信息分开
 - 总体情况(system_info, ORM:DeReportSystemInfo), DESystem各小节都先放到shared目录
-- 从bll开始, 新建session对象, 并且把session对象作为参数传输给dal处理
+	- 信息系统名称,系统涉密等级(防护要求),网络类型 三个属性, (在总体情况中)不进行更新
 - fastapi 新项目, 可参考 PythonWork/TopoService
 	- router 路由
 	- 数据验证
 	- 授权
+- 由于数据库层级划分变化, 现在用physical_node_id 替代report_id...
+- 数据库层级划分:
+	-报告report >> 节点node >> 物理环境physical_node >> 其他
 
 -------------------------WONDERS
+-? 一些有强相关性的代码(例如:SystemInfo, SystemInfoView, SystemInfoViewCreate)要怎么同步更新...
+-? 在两张db表中使用了同一个属性--类似于链接, 这种应该怎么实现这个属性的crud
 -? class DeDeclareView(BaseView) 检查属性是否必填是在类创建的时候??
 	- 使用一个DeDeclareViewCreator [用于给一些默认值...]
 - 将DeSystem 的导入excel template 转到 DeService中
@@ -16,18 +22,6 @@
 	-找到这个section需要用的orm_model, 配置api_model
 	-在/api/all_section_api.py写对应api_model的方法
 	- NOW: 任务描述
-- ? OPTIONS 类型报的400错误, 似乎通过配置main.py中的origins解决了...
-- 单页获取, 单页更新
-	- 从UI端获取信息, 转化为ORM_Obj并保存  先处理委托方信息:DeReportClient
-- 将DeSystem 的导入excel template 转到 DeService中
-	- uvicorn.run(app=app, host="0.0.0.0", port=5000)  # ? 四个0 代表动态分配ip?
-?? - 手动配置... 能写脚本生成代码?
-	-打开原有的DeSystem, 确定在第几个section
-	-找到这个section需要用的orm_model, 配置api_model
-	-在/api/all_section_api.py写对应api_model的方法
-	- NOW: 任务描述
-- ? OPTIONS 类型报的400错误, 似乎通过配置main.py中的origins解决了...
-
 
 ------------------------------------------基本模板(api layer)
 #!/usr/bin/env python3

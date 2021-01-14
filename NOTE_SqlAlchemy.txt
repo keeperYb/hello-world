@@ -1,3 +1,23 @@
+Chapter Flag:
+==========================================
+Section Flag:
+------------------------------------------ 
+
+****************************** NOTE BODY **********************************
+Object Relational Turorial (Official site tutorial)
+==========================================Version Check
+
+==========================================Connecting
+
+==========================================Declare a Mapping
+process of configuration:
+- describe the database tables we’ll be dealing with
+- define our own classes which will be mapped to those tables
+* these two tasks are performed together by SQLAlchemy, using 'Declarative'
+
+****************************** END NOTE BODY **********************************
+
+========================================== TIPS
 - sqlAlchemy的session的类型:
 	sqlalchemy.orm.session.Session
 - sqlalchemy的Update:
