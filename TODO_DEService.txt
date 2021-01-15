@@ -1,7 +1,5 @@
 -------------------------WORKS
-- 做硬件平台的api，描述和平台信息分开
-- 总体情况(system_info, ORM:DeReportSystemInfo), DESystem各小节都先放到shared目录
-	- 信息系统名称,系统涉密等级(防护要求),网络类型 三个属性, (在总体情况中)不进行更新
+- api，描述还没写
 - fastapi 新项目, 可参考 PythonWork/TopoService
 	- router 路由
 	- 数据验证
@@ -23,7 +21,15 @@
 	-在/api/all_section_api.py写对应api_model的方法
 	- NOW: 任务描述
 
-------------------------------------------基本模板(api layer)
+------------------------------------------基本流程
+- 在routers中注册
+- 确定model(model_orm.py), view(view.shared_view.py), viewcreate(view.shared_view.py)
+- 更新view_orm_dict 和 viewcreate_orm_dict(utils.io_helpers.py/ TransferHelper)
+- 编写api层(list // detail, save)
+- 编写bll
+- 编写dal
+
+(api layer)
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
@@ -37,20 +43,20 @@ from routers import router  # 分层引用router
 from view.other_common_view import BaseResult
 
 
-@router.get("/system_info/detail", summary='获取 总体信息 的数据库记录')
+@router.get("/xx/detail", summary='获取 xx 的数据库记录')
 async def detail():
     """
-    获取 总体信息 的数据库记录
+    获取 xx 的数据库记录
 
     :return: BaseResult
     """
     pass
 
 
-@router.post("system_info/save", summary='保存 总体情况 到数据库中')
-async def save(view_obj: XXView):
+@router.post("/xx/save", summary='保存 xx 到数据库中')
+async def save(viewcreate_obj: XXViewCreate):
     """
-    保存 总体情况 到数据库中
+    保存 xx 到数据库中
 
     :param view_obj: DeReportSystemInfoView 对应obj
     :return: BaseResult
