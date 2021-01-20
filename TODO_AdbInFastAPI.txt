@@ -1,0 +1,6 @@
+- 将AdbInFastAPI转移到DEService
+	- 
+
+- 传输db from Pad to PC:
+	Pad db文件路径: Pad(王伟青): /sdcard/deSystem/evaluation.db    选择的表: de_evaluation_detail(随意选的)
+	PC 文件接收路径: D:\file_transfer

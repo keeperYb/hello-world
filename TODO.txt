@@ -1,5 +1,5 @@
 ------------------------------------------------------------------------------------------
-今日日程: 2020-1-15
+今日日程: 2020-1-20
 **********
 VERY IMPORTANT !!
 - 用demo试一下, git rebase
@@ -7,8 +7,8 @@ VERY IMPORTANT !!
 - SQLAlchemy Session (in web...)
 - FastAPI
 **********
-- 更新firefox, 查看merge和rebase的差别
--?  try...except...else这个控制块的逻辑顺序是什么?
+------------------------------------------------------------------------------------------Questions
+
 -? 登录, user_id...有很大的问题...例如:
 	CREATE TABLE "platform_user" (
 		  "id" INT64 primary key,
@@ -35,47 +35,7 @@ VERY IMPORTANT !!
 - ? sqlalchemy 的 session 为什么没有自动提示?
 - ? request 参数是否必填
 - . 框架的Tutorial很全面, 可以一读
-- ! 自动生成代码(也即改变文本形式, 生成新的文本), 参考输入:
-	class DeReportTaskDesc(Base, BasePageModel):
-    __tablename__ = 'de_report_task_description'
-    # 通知下发时间
-    NoticeSendDate = Column(Date, name='notice_send_date')
-    # 谁发的通知
-    NoticeSender = Column(String, name='notice_sender')
-    # 测评机构
-    DeInstitution = Column(String, name='de_institution')
-    # 检测开始日期
-    DetectionBeginDate = Column(Date, name='detection_begin_date')
-    # 检测结束日期
-    DetectionEndDate = Column(Date, name='detection_end_date')
-    # 专家评估会召开时间
-    AssessmentMeetingDate = Column(Date, name='assessment_meeting_date')
-    # 专家评估会召开地点
-    AssessmentMeetingAddress = Column(String, name='assessment_meeting_address')
-    # 报告产生时间
-    ReportedDate = Column(Date, name='reported_date')
-	
-	对应参考输出:
-	class DeReportTaskDescApi(BaseApi):
-    # 通知下发时间
-    NoticeSendDate: datetime = None
-    # 谁发的通知
-    NoticeSender: str
-    # 测评机构
-    DeInstitution: str
-    # 检测开始日期
-    DetectionBeginDate: datetime = None
-    # 检测结束日期
-    DetectionEndDate: datetime = None
-    # 专家评估会召开时间
-    AssessmentMeetingDate: datetime = None
-    # 专家评估会召开地点
-    AssessmentMeetingAddress: str
-    # 报告产生时间
-    ReportedDate: datetime = None
-    pass
-	
-	
+
 - ! pycharm自动生成注释(search for 'python integrated tools' , 'template')
 - ?? service 里的router干嘛的?
 - ?! 本地分支的信息不要上传到远程分支上, 要怎么做...
@@ -89,8 +49,28 @@ VERY IMPORTANT !!
 	- python-documentation, 7.2.2. Saving structured data with json
 - 复制, 清空word文档
 - 去专用机器上看申报系统界面(下午)
-------------------------------------------------------------------------------------------
-- ?好像没有互相import的做法...?
+------------------------------------------------------------------------------------------Solved
+-.  try...except...else这个控制块的逻辑顺序是什么?
+import traceback
+
+try:
+    a = q
+    pass
+except:
+    traceback.print_exc()
+    print('<<<< Some error I don\'t know')
+    pass
+else:  # 没有except的时候执行的
+    print('<<<<Else block')
+    pass
+finally:  # 无论是否有except都会执行
+    print('<<<<Finally block.')
+    pass
+
+print('If you see THIS, it means the system is not blocked!!!')  # 在try-except-else-finally块执行完后执行
+
+
+-. 有互相import的做法, 不用from...import...即可, 但是!!不要用, 出现互相import的主要问题是项目分层逻辑不明...
 - ?python enum 判断相等
 - !发布自己的Demo, 注意import前, 要 sys.path.append(rootPath)
 - *? 如何一键切换[交付环境] 和 [测试环境]?

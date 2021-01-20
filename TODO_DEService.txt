@@ -1,7 +1,29 @@
 -------------------------WORKS
+- 完成大表导入(big_excel_template)转移工作, in evaluate
+	# DESystem中的调用逻辑(ExcelTemplate_Show)
+    def onImport(self):
+        # todo , transfer to Service
+        excelName = MyFileDialog.getOpenFileName()
+        if excelName:
+            sheetIdx = 0
+            self.excelHandler = HandelExcel(excelName, sheetIdx)
+            isRightExcel = self.excelHandler.checkIsRightExcel()
+            if isRightExcel:
+                self.excelHandler.transferToKeyRows()
+                self.clearAllTreeWidgetItems()  # 清空treeWidgetItems
+                self.setUiAfterImport()
+            elif not isRightExcel:
+                MyMessageBox.information('选择的excel文件错误, 请重新选择')
+                pass
+        pass
+		
+- 完成DeService所有的api-bll-dao基本框架
+	- Next: ...
+	- Extra: 身份鉴别, 要提供不一样的api...
 - api，描述还没写
-- fastapi 新项目, 可参考 PythonWork/TopoService
-	- router 路由
+- 数据库修改:
+	- de_report_application: app_info(系统名称,版本)
+- DEService, 可参考 PythonWork/TopoService
 	- 数据验证
 	- 授权
 - 由于数据库层级划分变化, 现在用physical_node_id 替代report_id...
@@ -9,6 +31,7 @@
 	-报告report >> 节点node >> 物理环境physical_node >> 其他
 
 -------------------------WONDERS
+?? you're trying to rebase some commits already pushed to a portected branch
 -? 一些有强相关性的代码(例如:SystemInfo, SystemInfoView, SystemInfoViewCreate)要怎么同步更新...
 -? 在两张db表中使用了同一个属性--类似于链接, 这种应该怎么实现这个属性的crud
 -? class DeDeclareView(BaseView) 检查属性是否必填是在类创建的时候??
@@ -21,13 +44,11 @@
 	-在/api/all_section_api.py写对应api_model的方法
 	- NOW: 任务描述
 
-------------------------------------------基本流程
-- 在routers中注册
-- 确定model(model_orm.py), view(view.shared_view.py), viewcreate(view.shared_view.py)
-- 更新view_orm_dict 和 viewcreate_orm_dict(utils.io_helpers.py/ TransferHelper)
-- 编写api层(list // detail, save)
-- 编写bll
-- 编写dal
+------------------------------------------api-bll-dao基本框架, 基本流程
+- auto, 在routers中注册 (自动化, 向特定的标签的前一行加指定内容)
+- auto, 确定model(model_orm.py), view(view.shared_view.py), viewcreate(view.shared_view.py)
+- auto, 更新view_orm_dict 和 viewcreate_orm_dict(utils.io_helpers.py/ TransferHelper)
+- auto, 编写api, bll, dal(list // detail, save)
 
 (api layer)
 #!/usr/bin/env python3
