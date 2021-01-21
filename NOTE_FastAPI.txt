@@ -1,5 +1,5 @@
 == indicates the start of one Chapter(章节)
-============================== 
+==============================
 -- indicates the start of one Section(小节)
 ------------------------------
 跳过章节标记: SKIPPED
@@ -120,6 +120,27 @@ Query Parameters and String Validations==============================
 .
 .SKIPPED
 .
+
+Request Files==============================
+Import File------------------------------
+from fastapi import FastAPI, File, UploadFile
+
+Define File parameters------------------------------
+# file: bytes will be stored in MEMORY, means it's suitable for small files, while...
+
+File parameters with UploadFile------------------------------
+# file: UploadFile , exposes a SpooledTemporaryFile object as a file-like object
+	- UploadFile------------------------------
+	# UploadFile has the following async methods. 
+	# They all call the corresponding file methods underneath 
+	# (using the internal SpooledTemporaryFile).
+	
+	# inside of an async path operation function you can get the contents with:
+	# contents = await myfile.read()
+	# while inside of a normal def path operation function, 
+	# you can access the UploadFile.file directly, for example:
+	# contents = myfile.file.read()
+
 
 
 SQL(Relational) Databases==============================
