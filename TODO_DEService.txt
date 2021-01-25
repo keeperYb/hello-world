@@ -1,4 +1,7 @@
 -------------------------WORKS
+- 整体导入excel数据移到DEService中, 
+	[几乎没有改动]原地址(数据): DESystem > ExcelHelper > ExcelInfo
+	[要改动!]原地址(逻辑): DESystem > ReportManage
 - [网络环境]一次保存, 存入几个对象(描述, 图片list(先不存db, 暂时放入image文件夹), 各建筑物综合布线情况表)
 	- network_others (参考big_excel_template 的上传)
 ?- 上传图片的步骤:
@@ -6,8 +9,6 @@
 	本地. ??利用id_generator生成一id_list(对应为各个图片的id),??? 将这些图片的绝对路径存
 	入db, 
 	- 
-	
-- 大表导入(重写, git好像出了点问题) evaluate/big_excel_template
 - 解析HTML, 填到附件 附录1-1 > 附录1-3 的漏洞扫描表中
 - word导出, 用新的 docx-tpl, jinja2
 
@@ -20,12 +21,15 @@
 - DEService, 可参考 PythonWork/TopoService
 	- 数据验证
 	- 授权
-- database自行计算绝对路径(todo)
+-! bll 不应该包办太多(说的是生成view_model_obj), 违反了单一职责原则
 - 数据库层级划分:
 	- 由于数据库层级划分变化, 现在用physical_node_id 替代report_id...
 	- 报告report >> 节点node >> 物理环境physical_node >> 其他
 
 -------------------------WONDERS
+-? BaseDao(BasicDao) 设计明显可以再改进...
+-! http://127.0.0.1:5001/static/1353528439390478336.png (server 图片地址不是https开头)
+-! bll 不应该包办太多(说的是生成view_model_obj), 违反了单一职责原则
 -? json的int型好像长度不够...1352904933892038700 失真了
 -? try-except应该在哪一层? 底层, 底层上一层??
 -? session到底应该放在那一层?? 应该在list的for循环中还是之后执行commit??
@@ -46,11 +50,6 @@
 	- 使用一个DeDeclareViewCreator [用于给一些默认值...]
 - 将DeSystem 的导入excel template 转到 DeService中
 	- uvicorn.run(app=app, host="0.0.0.0", port=5000)  # ? 四个0 代表动态分配ip?
--? 手动配置步骤... 能写脚本生成代码?
-	-打开原有的DeSystem, 确定在哪个section
-	-找到这个section需要用的orm_model, 配置api_model
-	-在/api/all_section_api.py写对应api_model的方法
-	- NOW: 任务描述
 
 ------------------------------------------api-bll-dao基本框架, 基本流程
 - auto, 在routers中注册 (自动化, 向特定的标签的前一行加指定内容), 编写api, bll, dal(list // detail, save)
