@@ -55,14 +55,16 @@ We’re now ready to start talking to the database. The ORM’s “handle” to 
 > it holds are the food (and the database…the kitchen?)!   
 > See more on [THIS PAGE](https://docs.sqlalchemy.org/en/13/orm/session_basics.html#session-faq-whentocreate)
 
-###### When do I construct a Session, when do I commit it, and when do I close it?
+###### Extra Reading: When do I construct a Session, when do I commit it, and when do I close it?
 > The basic rules:
 > 1. As a general rule, keep the lifecycle of the session _**separate and external**_ from 
 >functions and objects that access and/or manipulate database data. This will greatly 
 >help with achieving a predictable and consistent transactional scope.
 > 2. Make sure you have a clear notion of where transactions begin and end, and **_keep_** 
 >**_transactions short_**, meaning, they end at the series of a sequence of operations, 
->instead of being held open indefinitely.
+>instead of being held open indefinitely.  
+
+BOOKMARK: 'A web application is the easiest case'
 
 
 
@@ -75,8 +77,6 @@ We’re now ready to start talking to the database. The ORM’s “handle” to 
 
 
 
-
----
 ---
 \*\* OVERALL TIPS(not in tutorial)
 - sqlAlchemy的session的类型:

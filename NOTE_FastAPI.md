@@ -1,35 +1,23 @@
-indicates the start of one Chapter(章节)==============================
-indicates the start of one Section(小节)------------------------------
-跳过章节标记: SKIPPED
-书签标记: _BOOKMARK
+跳过章节标记: SKIPPED     
+书签标记: _BOOKMARK     
 
-# FastAPI learning Note:
-## First Steps
+# FastAPI learning Note
+## CHAPTER: First Steps
 
 ### Recap, step by step
-#### Step 1: import FastAPI ...
-#### Step 2: create FastAPI 'instance'
+- Step 1: import FastAPI ...
+- Step 2: create FastAPI 'instance'
 ``` python
 from fastapi import FastAPI
 
 app = FastAPI()  # object 'app' is an instance of class FastAPI
 ```
-#### Step 3: create a path operation
-In a URL like:
-```
-https://example.com/items/foo
-``` 
-... the path would like:
-```
-/items/foo
-```
-a path operation decorator:
-```
-@app.get("/")   # use the path '/' , use HTTP 'get' operation
-```
-# the path operation function: root()
+- Step 3: create a path operation 
+- step4: define the path operation function: root()
+```python
 async def root():
     return {"message": "Hello World"}
+```
 ###
 
 Path Parameters==============================
