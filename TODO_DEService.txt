@@ -1,18 +1,14 @@
 -------------------------WORKS
-- 整体导入excel数据移到DEService中, 
-	[几乎没有改动]原地址(数据): DESystem > ExcelHelper > ExcelInfo
-	[要改动!]原地址(逻辑): DESystem > ReportManage
-- [网络环境]一次保存, 存入几个对象(描述, 图片list(先不存db, 暂时放入image文件夹), 各建筑物综合布线情况表)
-	- network_others (参考big_excel_template 的上传)
-?- 上传图片的步骤:
-	- cli上传图片的list(List[UploadFile] = File(...)), 到ser后, 将list中的图片暂存到ser
-	本地. ??利用id_generator生成一id_list(对应为各个图片的id),??? 将这些图片的绝对路径存
-	入db, 
-	- 
+
+-* PAD, CLI合并时, 增加判断条件 
+- super_group 新增判断: super_group不重复, 人员不重复?...
+- 下发db: 服务器返回文件给客户端:
+	from starlette.responses import FileResponse
+	@app.get("/file")
+	def file():
+		return FileResponse('./readme.txt', filename='test.txt')
 - 解析HTML, 填到附件 附录1-1 > 附录1-3 的漏洞扫描表中
 - word导出, 用新的 docx-tpl, jinja2
-
-
 - 完成DeService所有的api-bll-dao基本框架
 	- Extra: 身份鉴别, 要提供不一样的api...
 - 所有的api-bll-dao基本框架api，描述还没写
@@ -21,24 +17,45 @@
 - DEService, 可参考 PythonWork/TopoService
 	- 数据验证
 	- 授权
--! bll 不应该包办太多(说的是生成view_model_obj), 违反了单一职责原则
+-. 最终打包 
+	- pyinstaller xx_main.py
+	- 更改xx_main.spec(上一步生成) 的 hiddenimports
+		-             hiddenimports=[
+                'uvicorn.logging',
+                'uvicorn.loops',
+                'uvicorn.loops.auto',
+                'uvicorn.protocols',
+                'uvicorn.protocols.http',
+                'uvicorn.protocols.http.auto',
+                'uvicorn.protocols.websockets',
+                'uvicorn.protocols.websockets.auto',
+                'uvicorn.lifespan',
+                'uvicorn.lifespan.on',
+             ],
+	- pyinstaller xx_main.spec
 - 数据库层级划分:
 	- 由于数据库层级划分变化, 现在用physical_node_id 替代report_id...
 	- 报告report >> 节点node >> 物理环境physical_node >> 其他
 
 -------------------------WONDERS
+-** 面向对象, 测试, 数据库设计
+-? 一会儿用 bytes 类型能传, 一会儿和 Form 就 UploadFile 能传...
+-. 返回FileResponse: evaluation_from_server, 怎么存到cli的硬盘上? 最后还是用了StreamingResponse, cli读取streaming_response.content--一个file-like obj
+-? 使用方法怎么方便的测试?
+-? NoneType.xx 调用应该怎么处理??
+-? bll 要取出一个对象值(value of obj)的操作?
+-? 这么多router干什么的...
+-? 合理运用database view 来减少 query的复杂度?
+-? 公共类(Helper) 和 父类(Base)... 什么时候用什么? 子类同名函数, 应该和父类同名函数保持参数一致...
+-? typing.List 和 list 有什么不同??
 -? BaseDao(BasicDao) 设计明显可以再改进...
--! http://127.0.0.1:5001/static/1353528439390478336.png (server 图片地址不是https开头)
 -! bll 不应该包办太多(说的是生成view_model_obj), 违反了单一职责原则
 -? json的int型好像长度不够...1352904933892038700 失真了
 -? try-except应该在哪一层? 底层, 底层上一层??
 -? session到底应该放在那一层?? 应该在list的for循环中还是之后执行commit??
 -? 项目中的de_report_image 不能继承BaseNodePageModel, 是为什么
 -? cwd(current working directory)在打包好的程序中是否也有效?
--? db更新的模板大概什么样?
--? 图片存储, 静态挂载?
 -? bll 临时用到的特定pydantic_model放在哪一层比较好
--? 如何: 写入文件时, 不要覆盖原文件, 而是append到末尾
 -? Rebasing published commit
 	- You're trying to rebase some commits already pushed to a portected branch.
 	- Rebasing them would duplicate commits, which is not recommended and most likely unwanted.
@@ -52,6 +69,7 @@
 	- uvicorn.run(app=app, host="0.0.0.0", port=5000)  # ? 四个0 代表动态分配ip?
 
 ------------------------------------------api-bll-dao基本框架, 基本流程
+
 - auto, 在routers中注册 (自动化, 向特定的标签的前一行加指定内容), 编写api, bll, dal(list // detail, save)
 - auto, 更新view_orm_dict 和 viewcreate_orm_dict(utils.io_helpers.py/ TransferHelper)
 - auto, 编写api, bll, dal(list // detail, save)
