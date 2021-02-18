@@ -1,50 +1,36 @@
 -------------------------WORKS
-
--* PAD, CLI合并时, 增加判断条件 
-- super_group 新增判断: super_group不重复, 人员不重复?...
-- 下发db: 服务器返回文件给客户端:
-	from starlette.responses import FileResponse
-	@app.get("/file")
-	def file():
-		return FileResponse('./readme.txt', filename='test.txt')
-- 解析HTML, 填到附件 附录1-1 > 附录1-3 的漏洞扫描表中
+- 申报管理, 对*.hyd文件进行处理
+-? PAD, CLI合并时, 增加判断条件(group_bl.py)
+	- 详情见笔记本下标页: 数据库合并情况
+- 下载图片list, 从ser到pad
+- 部署方式研究: docker (service)
+- 临时的文件tmp最好...用不会重复的名字...
 - word导出, 用新的 docx-tpl, jinja2
+
+- super_group 新增判断: super_group不重复, 人员不重复?...
+- 解析HTML, 填到附件 附录1-1 > 附录1-3 的漏洞扫描表中
 - 完成DeService所有的api-bll-dao基本框架
 	- Extra: 身份鉴别, 要提供不一样的api...
-- 所有的api-bll-dao基本框架api，描述还没写
-- 数据库修改:
-	- de_report_application: app_info(系统名称,版本)
 - DEService, 可参考 PythonWork/TopoService
 	- 数据验证
 	- 授权
--. 最终打包 
-	- pyinstaller xx_main.py
-	- 更改xx_main.spec(上一步生成) 的 hiddenimports
-		-             hiddenimports=[
-                'uvicorn.logging',
-                'uvicorn.loops',
-                'uvicorn.loops.auto',
-                'uvicorn.protocols',
-                'uvicorn.protocols.http',
-                'uvicorn.protocols.http.auto',
-                'uvicorn.protocols.websockets',
-                'uvicorn.protocols.websockets.auto',
-                'uvicorn.lifespan',
-                'uvicorn.lifespan.on',
-             ],
-	- pyinstaller xx_main.spec
+-. 最终打包
+	
 - 数据库层级划分:
 	- 由于数据库层级划分变化, 现在用physical_node_id 替代report_id...
 	- 报告report >> 节点node >> 物理环境physical_node >> 其他
 
 -------------------------WONDERS
 -** 面向对象, 测试, 数据库设计
+-* python virtualenv(实用工具)
+-? * 怎么简洁地取出一个记录中的数值?
+-? 需要一个强有力, 又不至于越俎代庖的BaseDao!!!
 -? 一会儿用 bytes 类型能传, 一会儿和 Form 就 UploadFile 能传...
 -. 返回FileResponse: evaluation_from_server, 怎么存到cli的硬盘上? 最后还是用了StreamingResponse, cli读取streaming_response.content--一个file-like obj
 -? 使用方法怎么方便的测试?
 -? NoneType.xx 调用应该怎么处理??
--? bll 要取出一个对象值(value of obj)的操作?
--? 这么多router干什么的...
+-? bll 要取出一个orm对象值(value of obj)的操作?
+-? fastapi这么多router干什么的...
 -? 合理运用database view 来减少 query的复杂度?
 -? 公共类(Helper) 和 父类(Base)... 什么时候用什么? 子类同名函数, 应该和父类同名函数保持参数一致...
 -? typing.List 和 list 有什么不同??
@@ -65,8 +51,6 @@
 -? 在两张db表中使用了同一个属性--类似于链接, 这种应该怎么实现这个属性的crud
 -? class DeDeclareView(BaseView) 检查属性是否必填是在类创建的时候??
 	- 使用一个DeDeclareViewCreator [用于给一些默认值...]
-- 将DeSystem 的导入excel template 转到 DeService中
-	- uvicorn.run(app=app, host="0.0.0.0", port=5000)  # ? 四个0 代表动态分配ip?
 
 ------------------------------------------api-bll-dao基本框架, 基本流程
 

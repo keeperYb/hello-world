@@ -1,5 +1,6 @@
 跳过章节标记: SKIPPED     
 书签标记: _BOOKMARK     
+更改md标记: TODO NOW
 
 # FastAPI learning Note
 ## CHAPTER: First Steps
@@ -13,15 +14,19 @@ from fastapi import FastAPI
 app = FastAPI()  # object 'app' is an instance of class FastAPI
 ```
 - Step 3: create a path operation 
-- step4: define the path operation function: root()
+- Step 4: define the path operation function: in this example, root()
 ```python
 async def root():
     return {"message": "Hello World"}
 ```
-###
 
-Path Parameters==============================
+---
+---
+   
+   
+## CHAPTER: Path Parameters
 ###
+```python
 from fastapi import FastAPI
 
 app = FastAPI()
@@ -30,18 +35,20 @@ app = FastAPI()
 @app.get("/items/{item_id}")
 async def read_item(item_id):
     return {"item_id": item_id}
-###
-Data Conversion------------------------------
-###
-# with the same Python type declaration(int here), FastAPI gives you data validation.
+```
+
+### Data Conversion
+With the same Python type declaration(int here), FastAPI gives you data validation.
+```python
 async def read_item(item_id: int):  
     # do sth
-###
-Order Matters------------------------------
-# order matters, specific one should be declared BEFORE common one,
-# in this example, '/users/me' should be declared before '/users/{user_id}'
+    pass
+```
 
-###
+### Order Matters for path parameters
+order matters, specific one should be declared BEFORE common one,
+in the following example, '/users/me' should be declared before '/users/{user_id}'
+```python
 @app.get("/users/me")
 async def read_user_me():
     return {"user_id": "the current user"}
@@ -50,19 +57,24 @@ async def read_user_me():
 @app.get("/users/{user_id}")
 async def read_user(user_id: str):
     return {"user_id": user_id}
-###
-Predefined values------------------------------(working with ...)
-# work with an enum as the predefined value ...
-Path parameters containing paths------------------------------
-# Recursion... using path converter from Starlette, like this: 
+```
+
+### Predefined values
+Work with an enum as the predefined value  
+### Path parameters containing paths
+Recursion... using path converter from Starlette, like this: 
+```
 /files/{file_path:path}
-# the last part, :path, tells it that the parameter should match any path
+```  
+the last part, :path, tells it that the parameter should match any path
 
 
-Query Parameters============================== 
-# other parameters that are not part of the path parameters, they are 'query' parameters
+---
+---
+## CHAPTER: Query Parameters
+other parameters that are not part of the path parameters, they are 'query' parameters
+```python
 from fastapi import FastAPI
-
 app = FastAPI()
 
 fake_items_db = [{"item_name": "Foo"}, {"item_name": "Bar"}, {"item_name": "Baz"}]
@@ -71,11 +83,13 @@ fake_items_db = [{"item_name": "Foo"}, {"item_name": "Bar"}, {"item_name": "Baz"
 @app.get("/items/")
 async def read_item(skip: int = 0, limit: int = 10):
     return fake_items_db[skip : skip + limit]
-# The query is the set of key-value pairs that go after the ? in a URL, separated by & characters.
-# For example, in the URL:
+```
+The query is the set of key-value pairs that go after the ? in a URL, separated by & characters.
+For example, in the URL:
 http://127.0.0.1:8000/items/?skip=0&limit=10
 
-Defaults------------------------------
+### Defaults
+```python
 from fastapi import FastAPI
 
 app = FastAPI()
@@ -84,38 +98,54 @@ fake_items_db = [{"item_name": "Foo"}, {"item_name": "Bar"}, {"item_name": "Baz"
 
 
 @app.get("/items/")
-async def read_item(skip: int = 0, limit: int = 10):
 # skip = 0 , limit = 10 is the default parameter
+async def read_item(skip: int = 0, limit: int = 10):
     return fake_items_db[skip : skip + limit]
-
-Optional Parameters------------------------------
-# parameter can be set to None, like this:
-from typing import Optional
-# ...
-async def read_item(item_id: str, q: Optional[str] = None):
-    pass
-
-Query parameter type conversion------------------------------
+```
 
 
-Request Body==============================
-# the client sends 'request body', the server returns 'response body'
-# To declare a request body, you use __Pydantic__ models with all their power and benefits.
-# Pydantic 是用来定义model的
-Import Pydantic's BaseModel------------------------------
-Create your data model------------------------------
-Declare it as a parameter------------------------------
-Results------------------------------
-Automatic Docs------------------------------
-Editor Support------------------------------
-# you get editor support if you use Pydantic model, instead of 'dict'
+### Optional Parameters
+parameter can be set to None, like this:
+```python
+from typing import Optional  # import typing.Optional
+from fastapi import FastAPI
 
-Use the model------------------------------
-Request body + path + query parameters------------------------------
+app = FastAPI()
 
 
-Query Parameters and String Validations==============================
+@app.get("/items/{item_id}")
+async def read_item(item_id: str, q: Optional[str] = None):  # setting to None
+    if q:
+        return {"item_id": item_id, "q": q}
+    return {"item_id": item_id}
 
+```
+
+
+### Query parameter type conversion
+
+
+## CHAPTER: Request Body
+the client sends 'request body', the server returns 'response body'
+To declare a request body, you use \_\_Pydantic\_\_ models with all their power and benefits.  
+
+Pydantic 是用来定义model的  
+- Import Pydantic's BaseModel
+- Create your data model
+- Declare it as a parameter  
+- Results  
+- Automatic Docs  
+- Editor Support  
+> Tips:  
+> You get editor support if you use Pydantic model, instead of 'dict'
+
+- Use the model  
+- Request body + path + query parameters  
+
+---
+---
+## CHAPTER: Query Parameters and String Validations  
+TODO NOW  
 .
 .SKIPPED
 .
