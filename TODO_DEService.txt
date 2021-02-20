@@ -1,5 +1,40 @@
 -------------------------WORKS
-- 申报管理, 对*.hyd文件进行处理
+-* de_detection_method_group, de_detection_method_result没有进pad中...
+-* group_bl node 不能用first()取, 用all()取, 
+- 申报导入记录, 新增数据库表:
+CREATE TABLE [de_declare_import_log](
+    [id] INT64, 
+    [declare_id] int64, --de_declare.id   
+    [import_date] varchar(50), --导入时间
+    [times] INT, --第几次导入
+    [row_status] TINYINT DEFAULT 1, 
+    [create_by] INT64, 
+    [create_time] TIMESTAMP DEFAULT (DATETIME ('now', 'localtime')), 
+    [create_device] varchar(50), 
+    [update_by] INT64, 
+    [update_time] TIMESTAMP DEFAULT (DATETIME ('now', 'localtime')), 
+    [update_device] varchar(50), 
+    [s_time] TIMESTAMP DEFAULT (DATETIME ('now', 'localtime'))
+    );
+    
+--现场测评任务导入(组长/组员)    
+CREATE TABLE [de_evaluation_task_import_log](
+    [id] INT64, 
+    [evaluation_task_id] int64, --de_evaluation_task.id   
+    [import_date] varchar(50), --导入时间
+    [times] INT, --第几次导入
+    [groups] varchar(50), --组员导入的分组，组长导入此栏位置空
+    [row_status] TINYINT DEFAULT 1, 
+    [create_by] INT64, 
+    [create_time] TIMESTAMP DEFAULT (DATETIME ('now', 'localtime')), 
+    [create_device] varchar(50), 
+    [update_by] INT64, 
+    [update_time] TIMESTAMP DEFAULT (DATETIME ('now', 'localtime')), 
+    [update_device] varchar(50), 
+    [s_time] TIMESTAMP DEFAULT (DATETIME ('now', 'localtime'))
+    );  
+	
+- group_bl 合并时最好取出一条merge一条, 最后commit全部
 -? PAD, CLI合并时, 增加判断条件(group_bl.py)
 	- 详情见笔记本下标页: 数据库合并情况
 - 下载图片list, 从ser到pad
@@ -21,6 +56,8 @@
 	- 报告report >> 节点node >> 物理环境physical_node >> 其他
 
 -------------------------WONDERS
+-? dao动态filter个数
+- dal不处理异常, 交给bll处理...?
 -** 面向对象, 测试, 数据库设计
 -* python virtualenv(实用工具)
 -? * 怎么简洁地取出一个记录中的数值?
