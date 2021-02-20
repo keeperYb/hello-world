@@ -48,6 +48,7 @@ VERY IMPORTANT !!
 	- python-documentation, 7.2.2. Saving structured data with json
 - 复制, 清空word文档
 ------------------------------------------------------------------------------------------Wonders/Solved
+-? github 新开工程, 原工程目录结构调整...
 -. pyqt 显示子页面, 一定要加上self...
 -? git 怎么删除远程的分支?(一下就push上去了...)
 -.  try...except...else这个控制块的逻辑顺序是什么?
