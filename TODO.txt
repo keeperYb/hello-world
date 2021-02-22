@@ -1,5 +1,5 @@
 ------------------------------------------------------------------------------------------
-今日日程: 2020-1-27
+今日日程: 2020-2-22
 **********
 VERY IMPORTANT !!
 - 合并之前先备份整个项目...
@@ -7,26 +7,10 @@ VERY IMPORTANT !!
 - FastAPI
 **********
 ------------------------------------------------------------------------------------------Questions
+-? python working with files - firefox Python
+- demos: extraordinary_base_dao.py
+- 打包程序报错: ModuleNotFoundError: No module named 'xx'
 -? Python html解析
--? 登录, user_id...有很大的问题...例如:
-	CREATE TABLE "platform_user" (
-		  "id" INT64 primary key,
-		  "user_id" varchar(20),
-		  "user_name" varchar(20),
-		  "user_pw" varchar(100),
-		  "last_login_time" TIMESTAMP,
-		  "last_login_device" varchar(50),
-		  "last_change_time" TIMESTAMP,
-		  "last_change_device" varchar(50),
-		  "row_status" TINYINT DEFAULT 1,
-		  "create_by" INT64 NOT NULL,
-		  "create_time" TIMESTAMP DEFAULT (datetime('now', 'localtime')),
-		  "create_device" varchar(50),
-		  "update_by" INT64,
-		  "update_time" TIMESTAMP DEFAULT (datetime('now', 'localtime')),
-		  "update_device" varchar(50),
-		  "s_time" TIMESTAMP DEFAULT (datetime('now', 'localtime'))
-);
 - . https://ea.jetbrains.com/browser/ea_reports/6074559 (PC01 PyCharm错误报告)
 - ? 在PyCharm中, 注释自动生成author, date等信息
 - ! 申报任务(declare), 密码修改(admin)
