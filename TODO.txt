@@ -7,6 +7,7 @@ VERY IMPORTANT !!
 - FastAPI
 **********
 ------------------------------------------------------------------------------------------Questions
+-! magic methods of python, in python_basic/NOTE_...  
 -? python working with files - firefox Python
 - demos: extraordinary_base_dao.py
 - 打包程序报错: ModuleNotFoundError: No module named 'xx'

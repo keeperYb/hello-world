@@ -1,6 +1,8 @@
 -------------------------WORKS
-- 根据配置文件来设置常量
-- word导出, 用新的 docx-tpl, jinja2
+- word拼接导出, 用新的 docx-tpl, jinja2
+	- 可选的拼接方法:
+	1.	逐字设置格式, 然后拼接. 
+	2.	对文字统一设置style, 存为real_docx(而不是wps), 之后直接调用拼接
 - 部署方式研究: docker (service)
 -* 另外2个地方的申报导入: assign_task.py
 -*? group_bl node 不能用first()取, 用all()取, 
