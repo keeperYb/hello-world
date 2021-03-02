@@ -1,12 +1,16 @@
 -------------------------WORKS
-- word拼接导出, 用新的 docx-tpl, jinja2
-	- 可选的拼接方法:
-	1.	逐字设置格式, 然后拼接. 
-	2.	对文字统一设置style, 存为real_docx(而不是wps), 之后直接调用拼接
-- 部署方式研究: docker (service)
--* 另外2个地方的申报导入: assign_task.py
+-** word拼接导出, 可以用新的 docx-tpl, jinja2 ? B站: python-docx
+	- 优化, 确定__get_content_row_list的接口
+	- 内容的导入, 应当一次输入, 多次使用: xls(csv)
+-* AdbHelper 注意改一下, 不要把对返回值的判断写死...
+- 导出pad : de_evaluation_detail(逻辑可能还有点问题...)
+- 临时的文件tmp要用不会重复的名字
+-** 合并数据库, 模式设计? 
+	- 合并数据库不是把改过的东西全部merge那么简单
+- 另外2个地方的申报导入: assign_task.py
 -*? group_bl node 不能用first()取, 用all()取, 
 - 申报导入记录, 新增数据库表:
+-...  部署方式研究: docker (service)
 CREATE TABLE [de_declare_import_log](
     [id] INT64, 
     [declare_id] int64, --de_declare.id   
@@ -43,7 +47,6 @@ CREATE TABLE [de_evaluation_task_import_log](
 -? PAD, CLI合并时, 增加判断条件(group_bl.py)
 	- 详情见笔记本下标页: 数据库合并情况
 - 下载图片list, 从ser到pad
-- 临时的文件tmp最好...用不会重复的名字...
 
 - super_group 新增判断: super_group不重复, 人员不重复?...
 - 解析HTML, 填到附件 附录1-1 > 附录1-3 的漏洞扫描表中

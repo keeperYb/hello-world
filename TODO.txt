@@ -1,12 +1,20 @@
 ------------------------------------------------------------------------------------------
-今日日程: 2020-2-22
+今日日程: 2020-2-24
 **********
 VERY IMPORTANT !!
-- 合并之前先备份整个项目...
 - SQLAlchemy Session (in web...)
+- adb 测试的时候, 对三种pad测试(小米, E人E本未加密, E人E本已加密)
 - FastAPI
+- 合并之前先备份整个项目...
+- 每天的工作, 简要记录
+	- (周一)3-1: word文档拼接, 格式样式 
+	- 3-2: word文档设置表格样式
 **********
+------------------------------------------------------------------------------------------Work
+- Meeting: 启动Meeting时添加: 检查license
+- DEService: 合并docx(先demo)
 ------------------------------------------------------------------------------------------Questions
+-! data persistence in Python
 -! magic methods of python, in python_basic/NOTE_...  
 -? python working with files - firefox Python
 - demos: extraordinary_base_dao.py
