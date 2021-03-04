@@ -1,7 +1,10 @@
 -------------------------WORKS
+- table_dict.txt 完整配置表,  database/word_table_dict_helper.py
+	- 完成excel的所有配置,(使其成为元数据)
+	- 绕太长, 可能要配一个view, 当做原来的xls
 -** word拼接导出, 可以用新的 docx-tpl, jinja2 ? B站: python-docx
-	- 优化, 确定__get_content_row_list的接口
-	- 内容的导入, 应当一次输入, 多次使用: xls(csv)
+	- 完成 section 的excel对照表  D:\PythonWork\demos\outer_resource\xls\word_section_contents.xlsx
+	- 优化, session 何时引入, physical_node_id怎么获取
 -* AdbHelper 注意改一下, 不要把对返回值的判断写死...
 - 导出pad : de_evaluation_detail(逻辑可能还有点问题...)
 - 临时的文件tmp要用不会重复的名字

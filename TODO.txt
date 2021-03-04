@@ -9,11 +9,15 @@ VERY IMPORTANT !!
 - 每天的工作, 简要记录
 	- (周一)3-1: word文档拼接, 格式样式 
 	- 3-2: word文档设置表格样式
+	- 3-3: 完成内容填充模板
+	- 3-4: 创建新的数据库, 将所有'内容填充模板'存入数据库
 **********
 ------------------------------------------------------------------------------------------Work
 - Meeting: 启动Meeting时添加: 检查license
 - DEService: 合并docx(先demo)
 ------------------------------------------------------------------------------------------Questions
+-? save list into DataBase...
+-.. 消耗计算: 人物等级, 人物技能, 武器, 圣遗物
 -! data persistence in Python
 -! magic methods of python, in python_basic/NOTE_...  
 -? python working with files - firefox Python
@@ -24,7 +28,6 @@ VERY IMPORTANT !!
 - ? 在PyCharm中, 注释自动生成author, date等信息
 - ! 申报任务(declare), 密码修改(admin)
 - ! web的数据库连接池, 不要把DbHelper单例化, 可以用localSession
-- ? sqlalchemy 的 session 为什么没有自动提示?
 - ? request 参数是否必填
 - . 框架的Tutorial很全面, 可以一读
 
