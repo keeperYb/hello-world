@@ -1,14 +1,54 @@
--------------------------WORKS
-- table_dict.txt 完整配置表,  database/word_table_dict_helper.py
-	- 完成excel的所有配置,(使其成为元数据)
-	- 绕太长, 可能要配一个view, 当做原来的xls
--** word拼接导出, 可以用新的 docx-tpl, jinja2 ? B站: python-docx
-	- 完成 section 的excel对照表  D:\PythonWork\demos\outer_resource\xls\word_section_contents.xlsx
-	- 优化, session 何时引入, physical_node_id怎么获取
--* AdbHelper 注意改一下, 不要把对返回值的判断写死...
+KERNEL_SECURITY_CHECK_FAILURE
+IRQL_NOT_LESS_OR_EQUAL
+-------------------------WORKS	
+
+	
+	-根据选的template_type不同, 再次确认所拼接的'各部分'文档
+		风评测试_xyb_0329
+		report_id: 1376462421413208064
+		node_id: 1376462421413208065
+		phy_id: 1376462681741074432
+	- 全面检查后的遗漏和一些问题:
+		-申请单位信息(static) 缺少字段 这个似乎是ok的
+		-总体情况_上次测评或评估意见整改情况表 缺少字段 这个是录入信息没有...
+		-硬件平台_硬件平台表 缺少字段??
+	-测试给出的WD缺陷(FengPingDeclare全部完成后, 应用到Declare):
+		xx_declare:
+		1、系统检测ok   系统总体情况，系统管理员，安全保密管理员，安全审计员，中的证书编号缺失
+		2、系统检测..   总体网络拓扑图，总体网络拓扑图，图片只有1张，但是申报内容里传了3张
+		3、系统检测..   网络环境图片也只有1张
+		4、系统检测??   安全保密设备 ，表14  安全保密产品表(涉密专用信息设备适配软硬件产品)，表头出现了两次
+		5、系统检测??前半部分   介质管控 少系统外涉密单机情况  ，标题多了联网笔记本
+		6、系统检测ok   物理环境，表3  物理安全措施表，视频监控，报警设备，电子门禁，应该是有和无，不是0和1
+		7、系统检测??   信息输入输出控制，表20  信息输入输出措施表，信息输入
+	-evaluation 加上勾选框版本(数据库都用的不一样了...)
+		report_id: 1372070782330609664
+		node_id: 1372070782334803968, 1372070782338998272, 1372070782338998273
+		phy_node_id: 1372085173918769152
+		- 先完成Wd_template的更改, db数据源还有点问题
+		最后注意改回config.ini中的db配置
+	-目录, 使用word-client目录模板, 让其自动更新
+	-io_helper.py WorkDirHelper/ get_root_absolute_path, 确实是绝对路径? 不会随test.py的更换而更换?
+	
+	-.. 图片多张插入一个位置...
+	-删除所有的临时docx文件,全局加一个self.temp_files
+	-..清除test_mailmerge.py中的todo项
+	-空模板, 18sections模板似乎可以共用...
+	-!! 身份鉴别措施表, db有问题, 应该不会重复出现鉴别对象
+	-到保密电脑：测评/应用系统报告模板， 使用wps打开。先做出所有的WD表
+	-? 总体设计: 同时使用 docx-mailmerge 和 python-docx
+	-? docx-compose, auto_numbering 总是出问题...
+
+	!?- 硬件平台等三个有专用项目的 debug test_mailmerge.py 303
+		- report_id: 1372070814807105536
+	!?- system_info column: secret_level 的dict选择有问题...机密增强可能选不出来..
+	!?- sys_dict 300 ..城域网 这个dict好像也少了
+- word连接其他:
+	- 有问题的表: de_report_identity, de_report_security_audit
+
 - 导出pad : de_evaluation_detail(逻辑可能还有点问题...)
 - 临时的文件tmp要用不会重复的名字
--** 合并数据库, 模式设计? 
+-** 合并数据库, 模式设计?
 	- 合并数据库不是把改过的东西全部merge那么简单
 - 另外2个地方的申报导入: assign_task.py
 -*? group_bl node 不能用first()取, 用all()取, 
@@ -63,17 +103,72 @@ CREATE TABLE [de_evaluation_task_import_log](
 - 数据库层级划分:
 	- 由于数据库层级划分变化, 现在用physical_node_id 替代report_id...
 	- 报告report >> 节点node >> 物理环境physical_node >> 其他
-
+- declare(申请书)新文档 declare_id 
+		- 自评估情况 wd_ok mm_ok
+		Word文件: "D:\PythonWork\DetectEvaluateService\template\docx_declare\chapters\自评估情况汇总表.docx"
+		de_declare_self_evaluation 			DeclareSelfEvaluation shared.py 977
+		de_declare_self_evaluation_detail
+		
+		- 审查合格证中信息变化情况表 wd_ok mm_ok
+		Word文件: "D:\PythonWork\DetectEvaluateService\template\docx_declare\chapters\第一部分\总体情况_审查合格证中信息变化情况表.docx"
+		de_report_system_info 新增xx_changed字段
+		
+		- 上次测评或评估意见整改情况表 report_id wd_ok mm_ok
+		Word文件: "D:\PythonWork\DetectEvaluateService\template\docx_declare\chapters\第一部分\总体情况_上次测评或评估意见整改情况表.docx"
+		de_report_system_rectification ReportSystemRectification 上次检查后整改情况 上次测评或评估意见整改情况表 shared.py 162
+		
+		- 虚拟化安全防护与情况 declare_id wd_ok mm_ok
+		Word文件: D:\PythonWork\DetectEvaluateService\template\docx_declare\chapters\八_虚拟化安全防护与情况.docx
+		de_declare_virtual_protection DeclareVirtualProtection  虚拟化安全防护和情况  shared.py 1053
+			- 查找标题的db表: sys_dict_category 20 | sys_dict
+-------------------------FINISHED BUT HAS VALUE
+- 把 是/否 换成 特殊字符形式(注意保留格式转换的便捷性, 可以先保留原来的模板)
+	__handle_checkbox, 480
+		- 固定: 系统总体情况表 OK dcl-ok
+			WD: D:\PythonWork\DetectEvaluateService\template\docx_fengping_declare\chapters\第一部分\第一部分1_总体情况.docx
+			declare_id: 1372070782330609664
+			col: SystemInfo_SecretLevel,ok  SystemInfo_NetType,OK  SystemInfo_NetMode OK
+		- 固定: 自查表 OK dcl-ok
+			WD: "D:\PythonWork\DetectEvaluateService\template\docx_fengping_declare\chapters\四_自查表.docx"
+			id: 1372070782330609664
+			
+		- 动态: 物理环境表 OK 
+			WD: "D:\PythonWork\DetectEvaluateService\template\docx_fengping_declare\chapters\第一部分\sections\物理环境.docx"
+			phy_id: 1372070910546288640
+			col:  PhysicalNode_PeripheralProtection1,OK  PhysicalNode_IsSingle1,OK  PhysicalNode_IsControl1,OK PhysicalNode_IsClosed1 OK
+		
+		- 动态: 各建筑物综合布线情况 datacount:1, p16 WD ok, MM ok
+			WD: D:\PythonWork\DetectEvaluateService\template\docx_fengping_declare\chapters\第一部分\sections\网络环境.docx
+			tableName: de_report_network_environment --> de_report_network_situation01~03
+			phy_id: 1372085173918769152
+		- 动态: 身份鉴别措施表?? p23 WD ok, MM ok
+			WD: D:\PythonWork\DetectEvaluateService\template\docx_fengping_declare\chapters\第一部分\sections\身份鉴别.docx
+			tableName: de_report_identity
+			phy_id: 1372085173918769152
+			col:  Identity_LocalMethod_checkbox1 , and following 2,3,4
+		- 动态: 电磁泄漏发射防护措施情况表?? p23 + 1 WD ok, 先不管xx
+			WD: D:\PythonWork\DetectEvaluateService\template\docx_fengping_declare\chapters\第一部分\sections\电磁泄漏发射防护.docx
+			tableName: de_report_electromagnetic_protection
+			phy_id: 
+		- 动态: 违规外联监控?? p23 + 2 WD ok, MM ok 
+			WD: D:\PythonWork\DetectEvaluateService\template\docx_fengping_declare\chapters\第一部分\sections\违规外联监控.docx
+			tableName: de_report_outreach_protection
+			phy_id: 1372085173918769152
+			col: OutreachProtection_CheckBox_1_1
+		- 动态: 介质管控措施 p23 + 5 WD ok, MM TBD, 暂时不管
+			WD: D:\PythonWork\DetectEvaluateService\template\docx_fengping_declare\chapters\第一部分\sections\介质管控.docx
+			tableName: de_report_medium_protection
+			phy_id: 
+			col: MediumProtection_UseManage1 , MediumProtection_UseManage2
 -------------------------WONDERS
--? dao动态filter个数
+-? word mailmerge 的竖排list赋值?
 - dal不处理异常, 交给bll处理...?
 -** 面向对象, 测试, 数据库设计
 -* python virtualenv(实用工具)
 -? * 怎么简洁地取出一个记录中的数值?
--? 需要一个强有力, 又不至于越俎代庖的BaseDao!!!
+-? 需要一个强有力, 又不至于越俎代庖的BaseDao!!! dao动态filter个数
 -? 一会儿用 bytes 类型能传, 一会儿和 Form 就 UploadFile 能传...
 -. 返回FileResponse: evaluation_from_server, 怎么存到cli的硬盘上? 最后还是用了StreamingResponse, cli读取streaming_response.content--一个file-like obj
--? 使用方法怎么方便的测试?
 -? NoneType.xx 调用应该怎么处理??
 -? bll 要取出一个orm对象值(value of obj)的操作?
 -? fastapi这么多router干什么的...

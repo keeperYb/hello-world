@@ -11,13 +11,15 @@ VERY IMPORTANT !!
 	- 3-2: word文档设置表格样式
 	- 3-3: 完成内容填充模板
 	- 3-4: 创建新的数据库, 将所有'内容填充模板'存入数据库
+	- 3-5: 完成大部分(3/4)的小节输出, 剩余特殊表格格式待输出
 **********
 ------------------------------------------------------------------------------------------Work
-- Meeting: 启动Meeting时添加: 检查license
-- DEService: 合并docx(先demo)
 ------------------------------------------------------------------------------------------Questions
+-? 自评估情况汇总表 是否可以做成 mailmerge_list的形式, 而且第一列应用格式?
+-?! 试一下...在git操作的时候, 先处理完local的, 再处理remote的(否则本地的无冲突修改会覆盖刚从remote端get到的内容...)	
+-? (优雅地)用dict生成python_obj
+-? reStructured comment style
 -? save list into DataBase...
--.. 消耗计算: 人物等级, 人物技能, 武器, 圣遗物
 -! data persistence in Python
 -! magic methods of python, in python_basic/NOTE_...  
 -? python working with files - firefox Python
@@ -44,31 +46,11 @@ VERY IMPORTANT !!
 	- python-documentation, 7.2.2. Saving structured data with json
 - 复制, 清空word文档
 ------------------------------------------------------------------------------------------Wonders/Solved
+-? sqlalchemy 使用
+-? fastapi (框架使用)
 -? github 新开工程, 原工程目录结构调整...
 -. pyqt 显示子页面, 一定要加上self...
 -? git 怎么删除远程的分支?(一下就push上去了...)
--.  try...except...else这个控制块的逻辑顺序是什么?
-import traceback
-
-try:
-    a = q
-    pass
-except:
-    traceback.print_exc()
-    print('<<<< Some error I don\'t know')
-    pass
-else:  # 没有except的时候执行的
-    print('<<<<Else block')
-    pass
-finally:  # 无论是否有except都会执行
-    print('<<<<Finally block.')
-    pass
-
-print('If you see THIS, it means the system is not blocked!!!')  # 在try-except-else-finally块执行完后执行
-
-
--. 有互相import的做法, 不用from...import...即可, 但是!!不要用, 出现互相import的主要问题是项目分层逻辑不明...
-- ?python enum 判断相等
 - !发布自己的Demo, 注意import前, 要 sys.path.append(rootPath)
 - *? 如何一键切换[交付环境] 和 [测试环境]?
 - ! learn some markdown on github
