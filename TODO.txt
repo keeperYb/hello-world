@@ -39,7 +39,6 @@ VERY IMPORTANT !!
 - ?? 数据库: 表嵌套该怎么设计: de_report_institution_person 和 de_report_sign_off
 - ?? json --> python object
 
-- docx-tpl 进行合并
 - ? python logging, 打包好了的程序也需要log
 - ! crit 从word文档(或其他文档)自动生成dict代码(使用计算机容易识别的标记)
 	- 读取源文档-->编写自动生成代码的脚本
@@ -48,6 +47,9 @@ VERY IMPORTANT !!
 ------------------------------------------------------------------------------------------Wonders/Solved
 -? sqlalchemy 使用
 -? fastapi (框架使用)
+- windows服务
+-? 根据*.ini 文件动态配置
+- UI保存2次, 怎么确保db中的数据不重复
 -? github 新开工程, 原工程目录结构调整...
 -. pyqt 显示子页面, 一定要加上self...
 -? git 怎么删除远程的分支?(一下就push上去了...)

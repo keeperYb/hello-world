@@ -1,8 +1,16 @@
 KERNEL_SECURITY_CHECK_FAILURE
 IRQL_NOT_LESS_OR_EQUAL
--------------------------WORKS	
-
-	
+-------------------------WORKS
+	-!! 中间文档都使用临时文件夹的方式处理, 模板不能更改(小节号不能加在模板上)
+	-!  git ignore, 把该ignore的临时文件夹直接ignore, 但模板不能ignore
+	-!! 测评报告文档导出失败, declare_id=1372070494865596416
+	- pad_service.py 固定目录: print(os.getenv("windir"))
+		task_node_id: (de_evaluation_task_node) 1377428290507251712
+		node_id: (de_report_node): 1372070494932705280
+		- 怎样测试?
+	- 全部系统的导入/导出log, 参考 "C:\Users\xuyb\Desktop\接收文件\5个系统的整体流程.bmp"
+		参考: "D:\desktop_files_and_folders\杂物\sql\导入导出log.txt"
+	- DeService架构
 	-根据选的template_type不同, 再次确认所拼接的'各部分'文档
 		风评测试_xyb_0329
 		report_id: 1376462421413208064
@@ -21,17 +29,25 @@ IRQL_NOT_LESS_OR_EQUAL
 		5、系统检测??前半部分   介质管控 少系统外涉密单机情况  ，标题多了联网笔记本
 		6、系统检测ok   物理环境，表3  物理安全措施表，视频监控，报警设备，电子门禁，应该是有和无，不是0和1
 		7、系统检测??   信息输入输出控制，表20  信息输入输出措施表，信息输入
-	-evaluation 加上勾选框版本(数据库都用的不一样了...)
+	-**** evaluation 加上勾选框版本(数据库都用的不一样了...)
 		report_id: 1372070782330609664
 		node_id: 1372070782334803968, 1372070782338998272, 1372070782338998273
 		phy_node_id: 1372085173918769152
 		- 先完成Wd_template的更改, db数据源还有点问题
 		最后注意改回config.ini中的db配置
 	-目录, 使用word-client目录模板, 让其自动更新
-	-io_helper.py WorkDirHelper/ get_root_absolute_path, 确实是绝对路径? 不会随test.py的更换而更换?
-	
+	参考宏：
+		Sub AutoOpen()
+           Dim aStory As Range
+           Dim aField As Field
+           For Each aStory In ActiveDocument.StoryRanges
+              For Each aField In aStory.Fields
+                 aField.Update
+              Next aField
+           Next aStory
+        End Sub
 	-.. 图片多张插入一个位置...
-	-删除所有的临时docx文件,全局加一个self.temp_files
+	-删除所有的临时docx文件,全局加一个self.temp_files？
 	-..清除test_mailmerge.py中的todo项
 	-空模板, 18sections模板似乎可以共用...
 	-!! 身份鉴别措施表, db有问题, 应该不会重复出现鉴别对象
