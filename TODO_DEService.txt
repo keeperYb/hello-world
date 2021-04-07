@@ -1,9 +1,20 @@
 KERNEL_SECURITY_CHECK_FAILURE
 IRQL_NOT_LESS_OR_EQUAL
 -------------------------WORKS
+	- evaluation 报告导出  task_report/download
+		打分表: 数据和pyqt解耦合
+		打分表: 注意更改db 配置表
+	
 	-!! 中间文档都使用临时文件夹的方式处理, 模板不能更改(小节号不能加在模板上)
-	-!  git ignore, 把该ignore的临时文件夹直接ignore, 但模板不能ignore
+		- 生成的所有临时文件, 都放到一个有着随机数的temp_random目录下
+		- 小节号...
+	- git ignore, 把该ignore的临时文件夹直接ignore, 但模板不能ignore
+	-?? 物理地址名字 替换 节点名字
+	-.. MailMergeHelper 全部改为非静态方法
+	-!! 模板能共用的就共用, 不行的, 用python脚本操作复制粘贴
+			-空模板, 18sections模板似乎可以共用...
 	-!! 测评报告文档导出失败, declare_id=1372070494865596416
+	- 应用系统检测报告
 	- pad_service.py 固定目录: print(os.getenv("windir"))
 		task_node_id: (de_evaluation_task_node) 1377428290507251712
 		node_id: (de_report_node): 1372070494932705280
@@ -29,7 +40,19 @@ IRQL_NOT_LESS_OR_EQUAL
 		5、系统检测??前半部分   介质管控 少系统外涉密单机情况  ，标题多了联网笔记本
 		6、系统检测ok   物理环境，表3  物理安全措施表，视频监控，报警设备，电子门禁，应该是有和无，不是0和1
 		7、系统检测??   信息输入输出控制，表20  信息输入输出措施表，信息输入
-	-**** evaluation 加上勾选框版本(数据库都用的不一样了...)
+	
+	-!!!! evaluation 加上勾选框版本(注意dict_list有很多都被注释了...数据库都用的不一样了...)
+		-在evaluation 更改数据库后, 缺失的数据库
+		de_report_institution
+		de_report_client
+		de_report_task_description
+		de_report_detection_tool
+		de_report_detection_opinion
+		de_report_professionals
+		de_report_evaluation_conclusion
+		de_report_vulnerability
+		de_report_vulnerability_opinion
+		de_report_electromagnetic_leakage
 		report_id: 1372070782330609664
 		node_id: 1372070782334803968, 1372070782338998272, 1372070782338998273
 		phy_node_id: 1372085173918769152
@@ -49,7 +72,7 @@ IRQL_NOT_LESS_OR_EQUAL
 	-.. 图片多张插入一个位置...
 	-删除所有的临时docx文件,全局加一个self.temp_files？
 	-..清除test_mailmerge.py中的todo项
-	-空模板, 18sections模板似乎可以共用...
+
 	-!! 身份鉴别措施表, db有问题, 应该不会重复出现鉴别对象
 	-到保密电脑：测评/应用系统报告模板， 使用wps打开。先做出所有的WD表
 	-? 总体设计: 同时使用 docx-mailmerge 和 python-docx
@@ -138,6 +161,21 @@ CREATE TABLE [de_evaluation_task_import_log](
 		de_declare_virtual_protection DeclareVirtualProtection  虚拟化安全防护和情况  shared.py 1053
 			- 查找标题的db表: sys_dict_category 20 | sys_dict
 -------------------------FINISHED BUT HAS VALUE
+-测试给出的WD缺陷:(FengPingDeclare)
+		风险评估：（风险001）
+		1、ok,ORM_obj字段名称改变SecurityAuditorCertificate--系统总体情况：导出的报告，安全审计员的证书编号为空 
+		2、ok--物理环境，院落是否独立，院落是否可控，报告中是否，页面上是 选择的  是  -- 待确定..
+		3、ok--网络环境，各建筑物综合布线情况表中，垂直布线两边选择不一致，报告中：光纤，屏蔽双绞线，不适用，页面上是：光纤，屏蔽双绞线，非屏蔽双绞线，
+		4、ok--报告中都没有“与上次相比变化的情况”，是否要有？
+		5、ok--导出的报告中，硬件平台，硬件平台表，多了一个字段：关键业务设备
+
+		系统检测（系统名称A）
+		1、ok--系统总体情况，导出来的报告，网络互联，如果页面上输入带数字或者字母，导出的报告里会显示有问题
+		2、ok--物理环境，院落是否独立，院落是否可控，院落是否封闭，报告里选择的是无，页面是  ：是
+		3、??--信息输入输出控制，信息输入输出措施表导出的报告里没有数据，但是页面上表里是有数据的
+		4、ok--介质管控，介质管控措施表，导出的报告里 少了系统外涉密单机
+		5、ok--自评估情况汇总表，报告中的评估结果，符合，不符合：c符合    g不符合
+		6、ok-导出来的申请书标题还是叫申请书.doc
 - 把 是/否 换成 特殊字符形式(注意保留格式转换的便捷性, 可以先保留原来的模板)
 	__handle_checkbox, 480
 		- 固定: 系统总体情况表 OK dcl-ok
