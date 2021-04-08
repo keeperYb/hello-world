@@ -2,19 +2,16 @@ KERNEL_SECURITY_CHECK_FAILURE
 IRQL_NOT_LESS_OR_EQUAL
 -------------------------WORKS
 	- evaluation 报告导出  task_report/download
-		打分表: 数据和pyqt解耦合
 		打分表: 注意更改db 配置表
-	
-	-!! 中间文档都使用临时文件夹的方式处理, 模板不能更改(小节号不能加在模板上)
-		- 生成的所有临时文件, 都放到一个有着随机数的temp_random目录下
-		- 小节号...
+		打分表: 表26 --> 表xx
+	-!! 模板能共用的就共用, 不行的, 用python脚本操作复制粘贴
+			-空模板, 18sections模板似乎可以共用...
+	- 新的申请书模板3-应用系统(WD)
+	-. 更新代码, pad_service 和 declare_service 使用windows注册表来提供路径, 但是有一个路径不对
 	- git ignore, 把该ignore的临时文件夹直接ignore, 但模板不能ignore
 	-?? 物理地址名字 替换 节点名字
 	-.. MailMergeHelper 全部改为非静态方法
-	-!! 模板能共用的就共用, 不行的, 用python脚本操作复制粘贴
-			-空模板, 18sections模板似乎可以共用...
 	-!! 测评报告文档导出失败, declare_id=1372070494865596416
-	- 应用系统检测报告
 	- pad_service.py 固定目录: print(os.getenv("windir"))
 		task_node_id: (de_evaluation_task_node) 1377428290507251712
 		node_id: (de_report_node): 1372070494932705280
@@ -31,15 +28,7 @@ IRQL_NOT_LESS_OR_EQUAL
 		-申请单位信息(static) 缺少字段 这个似乎是ok的
 		-总体情况_上次测评或评估意见整改情况表 缺少字段 这个是录入信息没有...
 		-硬件平台_硬件平台表 缺少字段??
-	-测试给出的WD缺陷(FengPingDeclare全部完成后, 应用到Declare):
-		xx_declare:
-		1、系统检测ok   系统总体情况，系统管理员，安全保密管理员，安全审计员，中的证书编号缺失
-		2、系统检测..   总体网络拓扑图，总体网络拓扑图，图片只有1张，但是申报内容里传了3张
-		3、系统检测..   网络环境图片也只有1张
-		4、系统检测??   安全保密设备 ，表14  安全保密产品表(涉密专用信息设备适配软硬件产品)，表头出现了两次
-		5、系统检测??前半部分   介质管控 少系统外涉密单机情况  ，标题多了联网笔记本
-		6、系统检测ok   物理环境，表3  物理安全措施表，视频监控，报警设备，电子门禁，应该是有和无，不是0和1
-		7、系统检测??   信息输入输出控制，表20  信息输入输出措施表，信息输入
+	
 	
 	-!!!! evaluation 加上勾选框版本(注意dict_list有很多都被注释了...数据库都用的不一样了...)
 		-在evaluation 更改数据库后, 缺失的数据库
@@ -74,7 +63,6 @@ IRQL_NOT_LESS_OR_EQUAL
 	-..清除test_mailmerge.py中的todo项
 
 	-!! 身份鉴别措施表, db有问题, 应该不会重复出现鉴别对象
-	-到保密电脑：测评/应用系统报告模板， 使用wps打开。先做出所有的WD表
 	-? 总体设计: 同时使用 docx-mailmerge 和 python-docx
 	-? docx-compose, auto_numbering 总是出问题...
 
@@ -161,6 +149,15 @@ CREATE TABLE [de_evaluation_task_import_log](
 		de_declare_virtual_protection DeclareVirtualProtection  虚拟化安全防护和情况  shared.py 1053
 			- 查找标题的db表: sys_dict_category 20 | sys_dict
 -------------------------FINISHED BUT HAS VALUE
+-测试给出的WD缺陷(FengPingDeclare全部完成后, 应用到Declare):
+		xx_declare:
+		1、系统检测ok   系统总体情况，系统管理员，安全保密管理员，安全审计员，中的证书编号缺失
+		2、系统检测..   总体网络拓扑图，总体网络拓扑图，图片只有1张，但是申报内容里传了3张
+		3、系统检测..   网络环境图片也只有1张
+		4、系统检测??   安全保密设备 ，表14  安全保密产品表(涉密专用信息设备适配软硬件产品)，表头出现了两次
+		5、系统检测??前半部分   介质管控 少系统外涉密单机情况  ，标题多了联网笔记本
+		6、系统检测ok   物理环境，表3  物理安全措施表，视频监控，报警设备，电子门禁，应该是有和无，不是0和1
+		7、系统检测??   信息输入输出控制，表20  信息输入输出措施表，信息输入
 -测试给出的WD缺陷:(FengPingDeclare)
 		风险评估：（风险001）
 		1、ok,ORM_obj字段名称改变SecurityAuditorCertificate--系统总体情况：导出的报告，安全审计员的证书编号为空 
