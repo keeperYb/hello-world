@@ -1,14 +1,33 @@
 KERNEL_SECURITY_CHECK_FAILURE
 IRQL_NOT_LESS_OR_EQUAL
 -------------------------WORKS
+	- 新的申请书模板3-应用系统(WD)
+		- 完善填写规则(mailmerge)
+		declare_id: 1372070820117094400 , application_id: ..
+		- 通用mm_field:
+		bmb17, bmb22, cepingzhongxin
+		
+		- 应用系统检测报告总体情况 mm_field: TBD
+		- 测评机构及委托方信息 mm_field: TBD
+		- 任务描述 mm_field: TBD
+		- 1.1 涉密信息系统基本情况 mm_field TBD
+		- 1.2 应用系统部署情况 mm_field TBD
+		- 2 应用系统密级 mm_field TBD
+		- 3.1 应用系统功能 mm_field: ReportApplication2 
+		- 3.2 硬件平台 mm_field：ReportHardwarePlatform2View
+		- 3.3 软件平台 mm_field: ReportSoftwarePlatform2, maybe need a view
+		- 3.4 信息资源 mm_field：ReportInformationResource, maybe need a view
+		- 4.1 管理员划分 mm_field：ReportManager2View
+		- 4.2 用户范围和权限 mm_field： ReportUserRangeView 
+		- 5 软件开发单位 mm_field： TBD
+	- 17 sections(除去物理节点) query 更改:
+ 		除了硬件平台, 软件平台, 安全保密设备, 应用系统. 其他都query外键: node_id
 	- evaluation 报告导出  task_report/download
-		打分表: 注意更改db 配置表
-		打分表: 表26 --> 表xx
+		打分表: 表26 --> 表xx 
 	-!! 模板能共用的就共用, 不行的, 用python脚本操作复制粘贴
 			-空模板, 18sections模板似乎可以共用...
-	- 新的申请书模板3-应用系统(WD)
+	- git 测试, 目录: D:\desktop_files_and_folders\杂物\git_test
 	-. 更新代码, pad_service 和 declare_service 使用windows注册表来提供路径, 但是有一个路径不对
-	- git ignore, 把该ignore的临时文件夹直接ignore, 但模板不能ignore
 	-?? 物理地址名字 替换 节点名字
 	-.. MailMergeHelper 全部改为非静态方法
 	-!! 测评报告文档导出失败, declare_id=1372070494865596416

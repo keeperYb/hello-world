@@ -1,22 +1,14 @@
 ------------------------------------------------------------------------------------------
-今日日程: 2020-2-24
+今日日程
 **********
 VERY IMPORTANT !!
-- SQLAlchemy Session (in web...)
-- adb 测试的时候, 对三种pad测试(小米, E人E本未加密, E人E本已加密)
-- FastAPI
-- 合并之前先备份整个项目...
-- 每天的工作, 简要记录
-	- (周一)3-1: word文档拼接, 格式样式 
-	- 3-2: word文档设置表格样式
-	- 3-3: 完成内容填充模板
-	- 3-4: 创建新的数据库, 将所有'内容填充模板'存入数据库
-	- 3-5: 完成大部分(3/4)的小节输出, 剩余特殊表格格式待输出
 - Read Progress: 
-	PyCharm tutorial: get started
+	PyCharm tutorial: get started==Run, debug and test?
+- adb 测试的时候, 对三种pad测试(小米, E人E本未加密, E人E本已加密)
 **********
 ------------------------------------------------------------------------------------------Work
 ------------------------------------------------------------------------------------------Questions
+-! 根据meta-data， 自动生成db-table或db-view所需：1. py-orm-class代码， 2.sql语句
 -? 自评估情况汇总表 是否可以做成 mailmerge_list的形式, 而且第一列应用格式?
 -?! 试一下...在git操作的时候, 先处理完local的, 再处理remote的(否则本地的无冲突修改会覆盖刚从remote端get到的内容...)	
 -? (优雅地)用dict生成python_obj
@@ -114,7 +106,6 @@ method_name，function_name，instance_var_name, function_parameter_name, local_va
 
 =======
 ------------------------------------------------------------------------------------------
-今日日程: 2020-1-11
 - ! GitHub guides: https://guides.github.com/
 - ! web的数据库连接池, 不要把DbHelper单例化
 - ? request 参数是否必填
