@@ -2,12 +2,14 @@
 今日日程
 **********
 VERY IMPORTANT !!
-- Read Progress: 
-	PyCharm tutorial: get started==Run, debug and test?
+- Read Progress:
+	PyCharm tutorial: Step 1, create and run ...
+
 - adb 测试的时候, 对三种pad测试(小米, E人E本未加密, E人E本已加密)
 **********
 ------------------------------------------------------------------------------------------Work
 ------------------------------------------------------------------------------------------Questions
+-？ python-docx 设置table的边框线，这个要在外网上去找了。。。
 -! 根据meta-data， 自动生成db-table或db-view所需：1. py-orm-class代码， 2.sql语句
 -? 自评估情况汇总表 是否可以做成 mailmerge_list的形式, 而且第一列应用格式?
 -?! 试一下...在git操作的时候, 先处理完local的, 再处理remote的(否则本地的无冲突修改会覆盖刚从remote端get到的内容...)	

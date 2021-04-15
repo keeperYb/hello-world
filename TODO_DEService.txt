@@ -1,27 +1,35 @@
 KERNEL_SECURITY_CHECK_FAILURE
 IRQL_NOT_LESS_OR_EQUAL
 -------------------------WORKS
+
+	- 17 sections(除去物理节点) query 更改:(根据服务器db: DM的数据库表格式更改)
+ 		除了物理安全措施, 硬件平台, 软件平台, 安全保密设备, 应用系统. 其他都query外键: node_id
+		report_id: 1382229086700707840  node_id: 1382229086700707841  (可能的)physical_node_id: 1382238212306640896
+		
+		- 代码, test_compose部分的更改
+	-! WD 文档的三大部分: 结构(docx_compose), 内容(docx_mailmerge), 格式(WD client)
+	- 在已经存在的文档的特定部位插入内容
+	template：D:\desktop_files_and_folders\杂物\应用系统检测报告.docx
+		- ok 文档段落
+		- TBD 特定格式表格 demos 1-test/unit_test
+			- 表格样式问题，可以考虑docx-compose拼接表格
 	- 新的申请书模板3-应用系统(WD)
 		- 完善填写规则(mailmerge)
-		declare_id: 1372070820117094400 , application_id: ..
-		- 通用mm_field:
-		bmb17, bmb22, cepingzhongxin
-		
-		- 应用系统检测报告总体情况 mm_field: TBD
-		- 测评机构及委托方信息 mm_field: TBD
-		- 任务描述 mm_field: TBD
-		- 1.1 涉密信息系统基本情况 mm_field TBD
-		- 1.2 应用系统部署情况 mm_field TBD
-		- 2 应用系统密级 mm_field TBD
-		- 3.1 应用系统功能 mm_field: ReportApplication2 
-		- 3.2 硬件平台 mm_field：ReportHardwarePlatform2View
-		- 3.3 软件平台 mm_field: ReportSoftwarePlatform2, maybe need a view
-		- 3.4 信息资源 mm_field：ReportInformationResource, maybe need a view
-		- 4.1 管理员划分 mm_field：ReportManager2View
-		- 4.2 用户范围和权限 mm_field： ReportUserRangeView 
-		- 5 软件开发单位 mm_field： TBD
-	- 17 sections(除去物理节点) query 更改:
- 		除了硬件平台, 软件平台, 安全保密设备, 应用系统. 其他都query外键: node_id
+		declare_id: 1372070820117094400 , application_id: ..(不太重要)
+	
+		- TBD 应用系统检测报告总体情况 mm_field: TBD 
+		- TBD 测评机构及委托方信息 mm_field: TBD
+		- TBD 任务描述 mm_field: TBD
+		- TBD 1.1 涉密信息系统基本情况 mm_field TBD
+		- TBD 1.2 应用系统部署情况 mm_field TBD
+		- TBD 2 应用系统密级 mm_field TBD
+		- OK 3.1 应用系统功能 mm_field: ReportApplication2 OK
+		- OK 3.2 硬件平台 mm_field：ReportHardwarePlatform2View OK
+		- OK 3.3 软件平台 mm_field: ReportSoftwarePlatform2 OK
+		- OK 3.4 信息资源 mm_field：ReportInformationResource OK
+		- OK 4.1 管理员划分 mm_field：ReportManager2View OK
+		- OK 4.2 用户范围和权限 mm_field： ReportUserRangeView  OK
+		- TBD 5 软件开发单位 mm_field： TBD
 	- evaluation 报告导出  task_report/download
 		打分表: 表26 --> 表xx 
 	-!! 模板能共用的就共用, 不行的, 用python脚本操作复制粘贴
@@ -235,6 +243,7 @@ CREATE TABLE [de_evaluation_task_import_log](
 - dal不处理异常, 交给bll处理...?
 -** 面向对象, 测试, 数据库设计
 -* python virtualenv(实用工具)
+- .. dm db 连接, 尝试连接数据库, 这一堆dll能不能放到一个文件夹(可以参考C:\dmdbms\doc下的文档)
 -? * 怎么简洁地取出一个记录中的数值?
 -? 需要一个强有力, 又不至于越俎代庖的BaseDao!!! dao动态filter个数
 -? 一会儿用 bytes 类型能传, 一会儿和 Form 就 UploadFile 能传...
