@@ -1,13 +1,9 @@
 KERNEL_SECURITY_CHECK_FAILURE
 IRQL_NOT_LESS_OR_EQUAL
 -------------------------WORKS
-
-	- 17 sections(除去物理节点) query 更改:(根据服务器db: DM的数据库表格式更改)
- 		除了物理安全措施, 硬件平台, 软件平台, 安全保密设备, 应用系统. 其他都query外键: node_id
-		report_id: 1382229086700707840  node_id: 1382229086700707841  (可能的)physical_node_id: 1382238212306640896
-		
-		- 代码, test_compose部分的更改
-	-! WD 文档的三大部分: 结构(docx_compose), 内容(docx_mailmerge), 格式(WD client)
+	-？ 怎么好像template里的word文档还是会变动。。。	
+	-! 动态加入表格怎么搞得这么复杂...
+	-! WD 文档的三大部分: 结构?(docx_compose),内容(docx_mailmerge),格式(WD client)
 	- 在已经存在的文档的特定部位插入内容
 	template：D:\desktop_files_and_folders\杂物\应用系统检测报告.docx
 		- ok 文档段落
@@ -16,7 +12,6 @@ IRQL_NOT_LESS_OR_EQUAL
 	- 新的申请书模板3-应用系统(WD)
 		- 完善填写规则(mailmerge)
 		declare_id: 1372070820117094400 , application_id: ..(不太重要)
-	
 		- TBD 应用系统检测报告总体情况 mm_field: TBD 
 		- TBD 测评机构及委托方信息 mm_field: TBD
 		- TBD 任务描述 mm_field: TBD
@@ -45,18 +40,6 @@ IRQL_NOT_LESS_OR_EQUAL
 		- 怎样测试?
 	- 全部系统的导入/导出log, 参考 "C:\Users\xuyb\Desktop\接收文件\5个系统的整体流程.bmp"
 		参考: "D:\desktop_files_and_folders\杂物\sql\导入导出log.txt"
-	- DeService架构
-	-根据选的template_type不同, 再次确认所拼接的'各部分'文档
-		风评测试_xyb_0329
-		report_id: 1376462421413208064
-		node_id: 1376462421413208065
-		phy_id: 1376462681741074432
-	- 全面检查后的遗漏和一些问题:
-		-申请单位信息(static) 缺少字段 这个似乎是ok的
-		-总体情况_上次测评或评估意见整改情况表 缺少字段 这个是录入信息没有...
-		-硬件平台_硬件平台表 缺少字段??
-	
-	
 	-!!!! evaluation 加上勾选框版本(注意dict_list有很多都被注释了...数据库都用的不一样了...)
 		-在evaluation 更改数据库后, 缺失的数据库
 		de_report_institution
@@ -85,14 +68,12 @@ IRQL_NOT_LESS_OR_EQUAL
               Next aField
            Next aStory
         End Sub
-	-.. 图片多张插入一个位置...
 	-删除所有的临时docx文件,全局加一个self.temp_files？
 	-..清除test_mailmerge.py中的todo项
 
 	-!! 身份鉴别措施表, db有问题, 应该不会重复出现鉴别对象
 	-? 总体设计: 同时使用 docx-mailmerge 和 python-docx
 	-? docx-compose, auto_numbering 总是出问题...
-
 	!?- 硬件平台等三个有专用项目的 debug test_mailmerge.py 303
 		- report_id: 1372070814807105536
 	!?- system_info column: secret_level 的dict选择有问题...机密增强可能选不出来..
@@ -176,6 +157,9 @@ CREATE TABLE [de_evaluation_task_import_log](
 		de_declare_virtual_protection DeclareVirtualProtection  虚拟化安全防护和情况  shared.py 1053
 			- 查找标题的db表: sys_dict_category 20 | sys_dict
 -------------------------FINISHED BUT HAS VALUE
+- 17 sections(除去物理节点) query 更改:(根据服务器db: DM的数据库表格式更改)
+ 		除了物理安全措施, 硬件平台, 软件平台, 安全保密设备, 应用系统. 其他都query外键: node_id
+		report_id: 1382229086700707840  node_id: 1382229086700707841  (可能的)physical_node_id: 1382238212306640896
 -测试给出的WD缺陷(FengPingDeclare全部完成后, 应用到Declare):
 		xx_declare:
 		1、系统检测ok   系统总体情况，系统管理员，安全保密管理员，安全审计员，中的证书编号缺失
