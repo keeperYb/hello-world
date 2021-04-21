@@ -1,8 +1,13 @@
 KERNEL_SECURITY_CHECK_FAILURE
 IRQL_NOT_LESS_OR_EQUAL
 -------------------------WORKS
-	-？ 怎么好像template里的word文档还是会变动。。。	
-	-! 动态加入表格怎么搞得这么复杂...
+	- 风险评估: 测评报告- WD ?, PY OK
+		- 风险评估: 测评报告 和 原初测评报告 对比, 然后制作风评测评报告
+	- 应用一个 json格式的get请求...
+	-!! 动态加入表格怎么搞得这么复杂...格式如果实在不行, 只能拼接了...
+	- 基础信息: 新增和修改, 增加判断: 是否重复
+		- 参考: 厂商
+		- 当前: 单位信息(unit_info)
 	-! WD 文档的三大部分: 结构?(docx_compose),内容(docx_mailmerge),格式(WD client)
 	- 在已经存在的文档的特定部位插入内容
 	template：D:\desktop_files_and_folders\杂物\应用系统检测报告.docx
