@@ -9,9 +9,12 @@ VERY IMPORTANT !!
 **********
 ------------------------------------------------------------------------------------------Work
 ------------------------------------------------------------------------------------------Questions
+-! 不定参数 in Python Official: 4.7.2. Keyword Arguments
 -! javascript,真正的跨平台语言.
 -? db连接(connection), db事务(session)
+-? microsoft word 表格样式(table_style)都包含哪些设定项目?
 -? 数据库自带的重复性校验
+-? 数据库 空值, 默认值
 -? 数据的限制, 应该加到db端还是后端代码...
 -? 前端-->后端, request实现参数不定(类似**kwargs)
 -? 怎么前端更改样式, 后端还要更改代码的...
@@ -21,7 +24,6 @@ VERY IMPORTANT !!
 -! 根据meta-data， 自动生成db-table或db-view所需：1. py-orm-class代码， 2.sql语句
 -? 自评估情况汇总表 是否可以做成 mailmerge_list的形式, 而且第一列应用格式?
 -?! 试一下...在git操作的时候, 先处理完local的, 再处理remote的(否则本地的无冲突修改会覆盖刚从remote端get到的内容...)	
--? (优雅地)用dict生成python_obj
 -? reStructured comment style
 -? save list into DataBase...
 -! data persistence in Python
@@ -30,7 +32,6 @@ VERY IMPORTANT !!
 - demos: extraordinary_base_dao.py
 - 打包程序报错: ModuleNotFoundError: No module named 'xx'
 -? Python html解析
-- . https://ea.jetbrains.com/browser/ea_reports/6074559 (PC01 PyCharm错误报告)
 - ? 在PyCharm中, 注释自动生成author, date等信息
 - ! 申报任务(declare), 密码修改(admin)
 - ! web的数据库连接池, 不要把DbHelper单例化, 可以用localSession

@@ -1,10 +1,22 @@
 KERNEL_SECURITY_CHECK_FAILURE
 IRQL_NOT_LESS_OR_EQUAL
 -------------------------WORKS
-	- 风险评估: 测评报告- WD ?, PY OK
-		- 风险评估: 测评报告 和 原初测评报告 对比, 然后制作风评测评报告
+-编辑内容: 更改时需要判断id, 以确定是新增还是编辑
+	- ok 单位信息
+	- .. 硬件/国产化硬件
+		- 不为空
+			: 设备名称
+		- 不重复
+	- .. 软件/国产化软件
+	- .. 安全保密设备/国产化..
+-utils/logger_factory.py 试用
+-服务下的路径 参考: padservice
+
+
+	- 应用系统-检测报告
+		- 动态生成表格, 
 	- 应用一个 json格式的get请求...
-	-!! 动态加入表格怎么搞得这么复杂...格式如果实在不行, 只能拼接了...
+	-? 多份template应用一份公用的common_template_docx // 或者写一份脚本, 自动复制template
 	- 基础信息: 新增和修改, 增加判断: 是否重复
 		- 参考: 厂商
 		- 当前: 单位信息(unit_info)
@@ -162,6 +174,7 @@ CREATE TABLE [de_evaluation_task_import_log](
 		de_declare_virtual_protection DeclareVirtualProtection  虚拟化安全防护和情况  shared.py 1053
 			- 查找标题的db表: sys_dict_category 20 | sys_dict
 -------------------------FINISHED BUT HAS VALUE
+- 动态加入表格 demos/my_docx/custom_table.py
 - 17 sections(除去物理节点) query 更改:(根据服务器db: DM的数据库表格式更改)
  		除了物理安全措施, 硬件平台, 软件平台, 安全保密设备, 应用系统. 其他都query外键: node_id
 		report_id: 1382229086700707840  node_id: 1382229086700707841  (可能的)physical_node_id: 1382238212306640896
