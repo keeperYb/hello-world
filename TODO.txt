@@ -9,6 +9,10 @@ VERY IMPORTANT !!
 **********
 ------------------------------------------------------------------------------------------Work
 ------------------------------------------------------------------------------------------Questions
+-?? 怎么从sqlalchemy的result_list中得到某一类的attr 的 list
+-!! 什么时候用静态类, 什么时候不用?
+-? python configparser
+-!! python test case 怎么写...
 -! 不定参数 in Python Official: 4.7.2. Keyword Arguments
 -! javascript,真正的跨平台语言.
 -? db连接(connection), db事务(session)

@@ -1,20 +1,38 @@
-KERNEL_SECURITY_CHECK_FAILURE
-IRQL_NOT_LESS_OR_EQUAL
 -------------------------WORKS
--编辑内容: 更改时需要判断id, 以确定是新增还是编辑
-	- ok 单位信息
-	- .. 硬件/国产化硬件
-		- 不为空
-			: 设备名称
-		- 不重复
-	- .. 软件/国产化软件
-	- .. 安全保密设备/国产化..
+- 全新项目: 使用UI界面一键导入全部输入信息xls (DeSystem-branch: version_tool_import_all_data) 先bl,  后ui 
+	-ok excel位置: D:\desktop_files_and_folders\excel\标注_内容版-检测评估报告导入模板2.xls
+	-ok 原系统设计 DeSystemPC: MainWin/ReportManage.py, importExcel()
+	-ok 概要设计, table_obj(excel模板)不要更改
+	-.. 更改table_obj的dict,以及Orm_obj的转化
+		-.. 硬件/软件/保密设备等先做
+	-?? de_declare的db表, 对应excel中不止一张表格
+	-?? report_id是已经有的, node_id, physical_node_id?都要自己生成
+		- 处理excel时应该能获得node和physical_node个数的信息
+		
+- 临时文件, 改个标题应该不用临时暂存才对...
+- bug修复
+	-... word图片插入, 两个list产生IndexError了...
+	-?? MailMergeHelper更改为动态(便于传参数), 也许要拆分成几个类
+'1382229025921048576'
+- 周怡楠发来的 使用手册 C:\Users\xuyb\Desktop\接收文件\申报工具操作手册.docx
+- 应用 检测报告(按模板来的):
+	- 多个漏洞检测的表格, 动态输入. 
+		- 首先要指定一个MyTableStyle, 画出一个和模板上一模一样的表格
+			- 列宽, 内外线的粗细, 表格自身的对齐方式
+- 应用 申请书(后续根据其他模板猜测的):
+- 前端
+	- 修改"C:\Users\xuyb\Desktop\接收文件\nginx-1.18.0\www\declare\static\js\app.cdcb674e428a38f1d225.js" 中的IP
+- 服务下的路径 测试要在get_zip这里进行
+	WorkDirHelper.set_root_absolute_path(os.path.abspath(os.path.dirname(__file__)))
+	三种路径:
+	1-前端需要的下载路径
+	2-service算出来的绝对路径
+	3-app算出来的绝对路径
+	- 相关commit测评审查管理服务: 8c63a00c372b69603c44f4be417826d6decabe6c
+	- declare/declare/download
 -utils/logger_factory.py 试用
--服务下的路径 参考: padservice
-
-
 	- 应用系统-检测报告
-		- 动态生成表格, 
+		- 动态生成表格
 	- 应用一个 json格式的get请求...
 	-? 多份template应用一份公用的common_template_docx // 或者写一份脚本, 自动复制template
 	- 基础信息: 新增和修改, 增加判断: 是否重复
@@ -174,34 +192,17 @@ CREATE TABLE [de_evaluation_task_import_log](
 		de_declare_virtual_protection DeclareVirtualProtection  虚拟化安全防护和情况  shared.py 1053
 			- 查找标题的db表: sys_dict_category 20 | sys_dict
 -------------------------FINISHED BUT HAS VALUE
-- 动态加入表格 demos/my_docx/custom_table.py
+- docx: 检测报告 DB: evaluation.db, SYSTEM_INFO: report_id: 1382228947890216960 system_name:风险0
+	- 打分结果汇总, 报告签批页中(de_evaluation_detail)
+		DESystem 中查找: {"tableName": "de_report_physical_node", "model": DeReportPhysicalNode, "dataCount": "1"},
+		参考:
+			分数详细: evaluation_task_bl.py, export_result_table() task_id: 1386484700205424640
+			excel模板: "D:\desktop_files_and_folders\excel\模板.xls"
+		总分: task_id下的所有得分 | 技术得分: method_id一路向上直到最大的ItemId(只有两个的)然后计算 | 管理得分: 同上
 - 17 sections(除去物理节点) query 更改:(根据服务器db: DM的数据库表格式更改)
  		除了物理安全措施, 硬件平台, 软件平台, 安全保密设备, 应用系统. 其他都query外键: node_id
 		report_id: 1382229086700707840  node_id: 1382229086700707841  (可能的)physical_node_id: 1382238212306640896
--测试给出的WD缺陷(FengPingDeclare全部完成后, 应用到Declare):
-		xx_declare:
-		1、系统检测ok   系统总体情况，系统管理员，安全保密管理员，安全审计员，中的证书编号缺失
-		2、系统检测..   总体网络拓扑图，总体网络拓扑图，图片只有1张，但是申报内容里传了3张
-		3、系统检测..   网络环境图片也只有1张
-		4、系统检测??   安全保密设备 ，表14  安全保密产品表(涉密专用信息设备适配软硬件产品)，表头出现了两次
-		5、系统检测??前半部分   介质管控 少系统外涉密单机情况  ，标题多了联网笔记本
-		6、系统检测ok   物理环境，表3  物理安全措施表，视频监控，报警设备，电子门禁，应该是有和无，不是0和1
-		7、系统检测??   信息输入输出控制，表20  信息输入输出措施表，信息输入
--测试给出的WD缺陷:(FengPingDeclare)
-		风险评估：（风险001）
-		1、ok,ORM_obj字段名称改变SecurityAuditorCertificate--系统总体情况：导出的报告，安全审计员的证书编号为空 
-		2、ok--物理环境，院落是否独立，院落是否可控，报告中是否，页面上是 选择的  是  -- 待确定..
-		3、ok--网络环境，各建筑物综合布线情况表中，垂直布线两边选择不一致，报告中：光纤，屏蔽双绞线，不适用，页面上是：光纤，屏蔽双绞线，非屏蔽双绞线，
-		4、ok--报告中都没有“与上次相比变化的情况”，是否要有？
-		5、ok--导出的报告中，硬件平台，硬件平台表，多了一个字段：关键业务设备
 
-		系统检测（系统名称A）
-		1、ok--系统总体情况，导出来的报告，网络互联，如果页面上输入带数字或者字母，导出的报告里会显示有问题
-		2、ok--物理环境，院落是否独立，院落是否可控，院落是否封闭，报告里选择的是无，页面是  ：是
-		3、??--信息输入输出控制，信息输入输出措施表导出的报告里没有数据，但是页面上表里是有数据的
-		4、ok--介质管控，介质管控措施表，导出的报告里 少了系统外涉密单机
-		5、ok--自评估情况汇总表，报告中的评估结果，符合，不符合：c符合    g不符合
-		6、ok-导出来的申请书标题还是叫申请书.doc
 - 把 是/否 换成 特殊字符形式(注意保留格式转换的便捷性, 可以先保留原来的模板)
 	__handle_checkbox, 480
 		- 固定: 系统总体情况表 OK dcl-ok
