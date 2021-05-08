@@ -1,14 +1,50 @@
--------------------------WORKS
+-------------------------WORKS\
+report_id: 1389540427362869248 (局域网) 1389540590865227776(非局域网)
+- 专家信息, 是图片
+	- WD有三个地方(检测的三处) 
+	- 图片插入 , 有IndexError的可能
+- visio 插入docx
+- 如果要出去, 需要拷贝的项目目录:
+	-ok DetectEvaluateService1.0
+	-ok importDataFromExcel
+	- demos
+	-? DetectEvaluateService
+- 总结哪些表还没有填写好...
 - 全新项目: 使用UI界面一键导入全部输入信息xls (DeSystem-branch: version_tool_import_all_data) 先bl,  后ui 
 	-ok excel位置: D:\desktop_files_and_folders\excel\标注_内容版-检测评估报告导入模板2.xls
+	-ok 对应db: evaluation.db, 对应报告: 原始报告(docx)
 	-ok 原系统设计 DeSystemPC: MainWin/ReportManage.py, importExcel()
 	-ok 概要设计, table_obj(excel模板)不要更改
 	-.. 更改table_obj的dict,以及Orm_obj的转化
-		-.. 硬件/软件/保密设备等先做
+		-ok 把对象all_level_id_info完成
+		-ok (新分支dynamic_table_obj...)原来根据 固定的名字查table_obj 要变成 根据excel中表的名字动态确认生成哪一个table_obj
+			- list动态添加到指定位置, 原位置后的元素后移
+		-.. 生成orm_obj, 需要注意的就是phy_node_id的设置, 原来是怎么做的??
+			
+		- 硬件/软件/保密设备等先做,下一步就先导入这几张excel/db表
 	-?? de_declare的db表, 对应excel中不止一张表格
-	-?? report_id是已经有的, node_id, physical_node_id?都要自己生成
-		- 处理excel时应该能获得node和physical_node个数的信息
-		
+	-?? 检测数据有效性 + log 报告
+- 整理一张excel, 列出: db_table_name, orm_model_name, foreign_key(?)
+- 申请书(风险评估) fengping_declare declare_id:1389541079350648832
+	-db/bl问题 自评估情况汇总表，基本情况介绍都显示的是暂无
+	-?? 分数详细, 计算有误
+
+- WD文档更改, 应用系统-检测报告:
+	dm_db, declare_id: 1382229025921048576
+	- 附录1-1, 附录1-2
+	__vulner_opinion_server__ , __vulner_opinion_db__
+- 在李进桌上的电脑(lenovo, windows)上安装pycharm 和 pycharm3.7.7
+	- 用pycharm 跑helloworld
+- 重新写static_part_mm_dict_list_evaluation, static_part_mm_dict_list_declare
+- 其他的附录1-1, 1-2
+- 安全保密机构人员, 添加sort
+- 电磁泄漏 de_report_electromagnetic_leakage, 看看哪里有..
+- try_catch应用log:
+	from utils import logger_factory
+	mylogger = logger_factory.getLogger()	
+-!! 如果不用mailmerge,格式的应用可以自由很多,各种变换也就不用改WD了, 因为去掉checkbox的概率很大, 需要容易切换的部件(代码)来操纵
+	- 首先测试在WD表格中插入cg的勾选框内容
+- 自动化管理WORD文档模板, git管控版本 和 py脚本
 - 临时文件, 改个标题应该不用临时暂存才对...
 - bug修复
 	-... word图片插入, 两个list产生IndexError了...
