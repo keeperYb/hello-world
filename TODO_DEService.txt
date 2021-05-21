@@ -1,20 +1,25 @@
 -------------------------WORKS\
 report_id: 1392106917198962688 (局域网) 1392259141547991040(非局域网)
+
+测评report_id:1392095714393333760  申请单位id: 1392090453066784768
 - 程序 问题
-	- feature_change_architecture
-	- 像个办法提高效率...或者让生成的进度可见
-	??- Word格式调整，未填写的描述等不留空		(许)
-	- DocxComposer 重构, 精简
+	??- word导出异常处理error_log,一般日志info_log 有可能导致程序终止的有哪些
+	- (检测报告) 总分需要检查...
+	??- Word格式调整，未填写的描述等不留空(许)
+	- 想个办法提高效率...或者让生成的进度可见
 	??- MailMergeHelper应该重构, 不要用那么长的一个方法, 也不要用那么多static方法
-	??- word导出异常处理 declare.db, 有可能导致程序终止的有哪些
-	??- 异常处理(logger), MS服务又生成不了文档了...
+	- DocxComposer 重构, 精简
+	!!- CustomTableBorder 非常慢....
 	- word模板进行精简...
 	- windows 服务 session0隔离?
-	
 - word 内容
-	ok- visio插入到word中: 更改insert_pictures的逻辑判断, 在判断是visio
-	格式时, 调用插入visio的代码
+	- 首先 *3, 风评检测(docx_fengping)
+		- 开头, 检测人员
+		- 第二部分
+			-
+	- de_report_description 相关的api和bl
 	??- 增加页码，填写说明页码为第1页
+	-
 - word 格式(sections部分注意 *4, 1st部分的总体情况.docx需要分别处理)
 	- 申请书的zip, 新增附件分类文件夹(还有可能没有的...)
 		1.关于申请涉密信息系统测评审查的函
