@@ -4,11 +4,18 @@
 VERY IMPORTANT !!
 - Read Progress:
 	PyCharm tutorial: Step 1, create and run ...
-- xyb , 123456
+- xuyb , Ab-123456
 - adb 测试的时候, 对三种pad测试(小米, E人E本未加密, E人E本已加密)
 **********
 ------------------------------------------------------------------------------------------Work
 ------------------------------------------------------------------------------------------Questions
+-? git reset, undo, revert... 两个分支改同样的地方?
+-? 类图? 项目结构图?
+-?  正则表达式 regex
+-?  httprequest的Form类型 很多422
+-?  session.rollback 能回滚到什么程度...
+-?  logging.handler.TimedRotatingFileHandler , logging.Formatter
+-?? db基础, join, left join , 视图
 -?  后端和前端, 由后端通知前端当前的进度
 -?? 怎么从sqlalchemy的result_list中得到某一类的attr 的 list
 -?  怎样保证两个list有相同的个数, 不产生IndexError??
